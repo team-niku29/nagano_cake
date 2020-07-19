@@ -13,5 +13,4 @@ class ClientUsersController < ApplicationController
 
   def withdrawal_update
   end
-  
 end
