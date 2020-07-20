@@ -9,6 +9,11 @@ class OrdersController < ApplicationController
   end
 
   def address_check
+    #@client_user = current_user
+    @payment = ""
+    @postal_code = ""
+    @shipping_address = ""
+    @shipping_name = ""
   end
 
   def order_check
