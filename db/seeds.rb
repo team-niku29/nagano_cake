@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
 Admin.create!(email:'admins@niku.com',password:'nikuniku')
 ClientUser.create!(first_name: '堀北', family_name: 'かすみ', kana_first_name: 'ホリキタ', kana_family_name: 'カスミ', postal_code: '2222222', address: '神奈川県！', password: 'nikuniku29',tel: '90000000000', email: 'niku@juu', delete_status: true)
 Genre.create!(name: 'ケーキ', invalid_status: true)
