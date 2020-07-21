@@ -8,11 +8,6 @@
         <h2>配送先　　　　　　<%= @order.shipping_address %></h2>
         <h2>支払い方法　　　　<%= @order.payment_flg %></h2>
         <h2>注文ステータス　　<%= @order.status_flg %></h2>
-
-        <%= form_for @order, (url: admin_client_user_order_path(@order.id)) do |f| %>
-        <%= f.select :status_flg, Order.status_flg.keys, {prompt: "選択してください"}, class: "prefecture-select" %>
-        <%= f.submit %>
-        <% end %>
     </div>
 
     <div class="item_table">
@@ -31,7 +26,7 @@
                 <% @items.each do |item| %>
                 <tr>
                     <td><%= item.name %></td>
-                    <td><%= item.price*$tax %></td>
+                    <td><%= (item.price*$tax).ceil %></td>
                     <td><%= item.quantity %></td>
                     <td><%= item.price*item.quantity*$tax %></td>
                     <td><%= item.production_status %></td>
