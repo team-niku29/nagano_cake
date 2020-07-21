@@ -1,2 +1,10 @@
-<h1>ClientUsers#show</h1>
-<p>Find me in app/views/client_users/show.html.erb</p>
+<h1>マイページ</h1>
+<p>登録情報</p>
+<%=link_to("編集する", edit_client_user_path) %>
+<%=link_to("パスワードを変更する", ) %>
+
+<table>
+</table>
+
+<%=link_to("配送先", client_user_addresses_path(current_client_user.id)) %>
+<%=link_to("注文履歴", client_user_orders_path(current_client_user.id)) %>
