@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
   def show
 
     @product = Product.find(params[:id])
-    @price = (@product.price_excluding * $tax).ceil
+    @price = (@product.price_excluding * @tax).ceil
   	if client_user_signed_in?
       @cart = Cart.new
       @client_user = current_client_user
