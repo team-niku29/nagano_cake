@@ -1,26 +1,27 @@
 class CartsController < ApplicationController
 
+  @TAX = 1.08
+
   def index
+    @total = 0                #合計計算用
     @carts = Cart.all
-    @total = 100
+    @client_user = current_client_user
   end
 
   def create
     @cart = Cart.new(cart_params) #Bookモデルのテーブルを使用しているのでbookコントローラで保存する。
-    @cart.user_id = current_user.id
-    if @cart.save
-      redirect_to request.referer, notice: "カートに初品を入れました"#保存された場合の移動先を指定。
-    else
-      @cart = Cart.new
-      @product = Product.find(params[:id])
-      render 'carts/show'
-    end
+    @cart.client_user_id = current_client_user.id
+    @cart.save
+    redirect_to client_user_carts_path, notice: "カートに初品を入れました"#保存された場合の移動先を指定。
   end
 
   def update
   end
 
   def destroy
+    @cart = Cart.find(params[:id])
+    @cart.destroy
+    redirect_to request.referer, notice: "商品をカートから取り出しました!"
   end
 
   def all_destroy
@@ -29,7 +30,7 @@ class CartsController < ApplicationController
   private
 
   def cart_params
-    params.require(:cart).permit(:quantity)
+    params.require(:cart).permit(:product_id, :quantity)
   end
 
 end
