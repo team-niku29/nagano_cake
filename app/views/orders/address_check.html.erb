@@ -1,2 +1,17 @@
 <h1>Orders#address_check</h1>
 <p>Find me in app/views/orders/address_check.html.erb</p>
+
+	<def>
+		<%= form_for($payment) do |f| %>
+			<%= f.radio_button $payment, 0 %>クレジットカード<br>
+			<%= f.radio_button $payment, 1 %>銀行振込<br>
+		<% end %>
+	</def>
+
+	<def>
+
+	</def>
+
+	<div>
+		<%= link_to "注文内容確認", client_user_order_check_path %>
+	</div>
