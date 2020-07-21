@@ -17,6 +17,14 @@ class Admin::OrdersController < ApplicationController
   end
   
   def show
+    @order = Order.find(1)
+    @statuses = Order.select(:status_flg)
+    @items = OrderItem.all
+    @total_price = 0
+    @items.each do |item|
+      @total_price += item.price * item.quantity
+      @total_price *= $tax
+    end
   end
 
   def update

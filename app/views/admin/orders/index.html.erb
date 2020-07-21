@@ -17,7 +17,7 @@
                 <td><%= link_to order.created_at.strftime("%Y-%m-%d %H:%M"), admin_orders_show_path(order.id) %></td>
                 <td><%= order.client_user.family_name %><%= order.client_user.first_name %></td>
                 <td><%= order.total_quantity %></td>
-                <td><%= order.payment_flg %></td>
+                <td><%= order.status_flg %></td>
             </tr>
             <% end %>
         </tbody>
