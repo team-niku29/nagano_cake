@@ -22,5 +22,7 @@
     <%= f.submit "Log in" %>
   </div>
 <% end %>
-
+<div>
+会員でない方は<%= link_to "こちら", '/client_users/sign_up' %>
+</div>
 <%= render "devise/shared/links" %>
