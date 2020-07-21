@@ -1,6 +1,8 @@
 
-	<div class="col-xs-9">
+	<div class="col-xs-6">
 		<h2>ショッピングカート</h2>
+
+		<%= link_to "カートを空にする",client_user_carts_path, method: :all_delete, data: {confirm: "本当に空にしますか？"}, class: "btn-sm btn-danger" %></td>
 
 		<table class="table table-hover table-inverse">
 			<thead>
@@ -17,22 +19,19 @@
 				<% @carts.each do |cart| %>
 					<tr>
 						<td><%= cart.product.name %></td>
-						<td><%= cart.product.price_excluding %></td>
+						<td><%= (cart.product.price_excluding * $tax).ceil %></td>
 						<td><%= cart.quantity %></td>
-						<td><%= cart.product.price_excluding * cart.quantity %></td>
-						<td><%= link_to "Destroy",cart, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"} %></td>
+						<td><%= (cart.product.price_excluding * $tax).ceil * cart.quantity %></td>
+						<td><%= link_to "カートから商品を出す",client_user_carts_path(cart), method: :delete %></td>
 					</tr>
+					<% @total = @total + (cart.product.price_excluding * $tax).ceil * cart.quantity %>
 				<% end %>
 			</tbody>
 		</table>
 
-		<div>
-			<%= link_to "買い物を続ける", root_path %>
-		</div>
-
 		<table class="table table-hover table-inverse">
 			<tr>
-				<td></td>
+				<td><%= link_to "買い物を続ける", root_path %></td>
 				<td></td>
 				<td></td>
 				<td>合計金額</td>
@@ -41,7 +40,7 @@
 		</table>
 
 		<div>
-			<%= link_to "情報入力に進む", "/client_users/1/address_check" %>
+			<%= link_to "情報入力に進む", client_user_order_check_path %>
 		</div>
 
 	</div>
