@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
-  belongs_to :cart
-  has_many :genres, :dependent :destroy
+
+  belongs_to :genre
+  has_many :carts, dependent: :destroy
 end
