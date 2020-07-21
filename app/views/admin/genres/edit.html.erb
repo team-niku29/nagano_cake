@@ -1,21 +1,13 @@
+<div class="container">
+	<h1>ジャンル編集画面</h1>
 
-<h1>ジャンル編集画面</h1>
-
-	<table class="table">ジャンル
-
-		<%= form_tag(@genres_path, method: "get") do %>
- 		<%= select_tag "submit_name", options_for_select([["プリン", "プリン"],["ケーキ","ケーキ"],["クッキー","クッキー"],["和菓子","和菓子"]]) %>
-		<% end %>
-
-		<%= form_with(model:@genres, local: true) do |form| %>
-  			<%= form.radio_button :delete_status, :unavailable %>
-  			<%= form.label :delete_status, "無効", {value: :unavailable, style: "display: inline-block;"} %>
-  			<%= form.radio_button :delete_status, :availability %>
-  			<%= form.label :delete_status, "有効", {value: :availability, style: "display: inline-block;"} %>
-			<div class="btn btn-primary" >変更を保存する</div>
-		<% end %>
-<<<<<<< HEAD
-	</table>
-=======
-	</div>
->>>>>>> df693fc5e142a3296e1204c9ff81cf80525855f5
+		<%= form_for @genre, url: admin_genre_path(@genre.id) do |f| %>
+  			<%= f.label :name, "ジャンル" %>
+  			<%= f.text_field :name %>
+  			<%= f.radio_button :invalid_status, false %>
+			<%= f.label :invalid_status, '無効', value: false %>
+  			<%= f.radio_button :invalid_status, true %>
+ 			<%= f.label :invalid_status, "有効", value: true %>
+ 			<%= f.submit "変更を保存する", class: "btn btn-primary" %>
+ 		<% end %>
+</div>
