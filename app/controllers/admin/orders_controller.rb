@@ -17,9 +17,9 @@ class Admin::OrdersController < ApplicationController
   end
   
   def show
-    @order = Order.find(1)
+    @order = Order.find(params[:id])
     @statuses = Order.select(:status_flg)
-    @items = OrderItem.all
+    @items = @order.order_items
     @total_price = 0
     @items.each do |item|
       @total_price += item.price * item.quantity
@@ -28,6 +28,15 @@ class Admin::OrdersController < ApplicationController
   end
 
   def update
+    @order = Order.find(params[:id])
+    @order.update(status_params)
+    redirect_to admin_client_user_orders_path
+  end
+
+  private
+
+  def status_params
+    params.require(:order).permit(:status_flg)
   end
   
 end

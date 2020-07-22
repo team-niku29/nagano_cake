@@ -7,7 +7,12 @@
         <h2>購入者　　　　　　<%= link_to @order.client_user.family_name+@order.client_user.first_name%></h2>
         <h2>配送先　　　　　　<%= @order.shipping_address %></h2>
         <h2>支払い方法　　　　<%= @order.payment_flg %></h2>
-        <h2>注文ステータス　　<%= @order.status_flg %></h2>
+        <h2>注文ステータス　　
+        <%= form_for @order, url:admin_client_user_order_path(@order.id) do |f| %>
+        <%= f.select :status_flg, Order.status_flgs.keys.to_a %>
+        <%= f.submit "更新" %>
+        <% end %>
+        </h2>
     </div>
 
     <div class="item_table">
@@ -30,6 +35,12 @@
                     <td><%= item.quantity %></td>
                     <td><%= item.price*item.quantity*$tax %></td>
                     <td><%= item.production_status %></td>
+                    <td>
+                    <%= form_for item, url:admin_client_user_order_order_item_path(item.order_id, item.id) do |f| %>
+                    <%= f.select :production_status, OrderItem.production_statuses.keys.to_a %>
+                    <%= f.submit "更新" %>
+                    <% end %>
+                    </td>
                 </tr>
                 <% end %>
             </tbody>
