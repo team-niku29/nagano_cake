@@ -8,9 +8,7 @@ class Admin::OrdersController < ApplicationController
     when "0"
       @orders = Order.where(created_at: Date.today)
     when "1"
-      binding.pry
-      @user = ClientUser.find(params[:user][:id])
-      @orders = @user.orders
+      @orders = ClientUser.find(params[:client_user_id]).orders
     else
       @orders = Order.all
     end

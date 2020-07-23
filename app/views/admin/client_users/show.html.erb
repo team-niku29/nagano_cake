@@ -7,6 +7,12 @@
 <%= f.text_field :id, value: @user.id ,readonly: true, style: "border:none" %>
 <% end %>
 
+<% if @user.delete_status == false %>
+<p>有効会員</p>
+<% else %>
+<p>退会済み</p>
+<% end %>
+
 氏名
 <%= @user.family_name %>　  <%= @user.first_name %>
 
@@ -29,7 +35,7 @@
 
 
 <div class="link">
-<%= link_to "注文一覧", admin_orders_index_path(@user.id, order_sort: 1) %>
+<%= link_to "注文一覧", admin_client_user_orders_path(@user.id, order_sort: 1) %>
 </div>
 
 

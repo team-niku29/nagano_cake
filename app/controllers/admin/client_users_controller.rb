@@ -4,6 +4,7 @@ class Admin::ClientUsersController < ApplicationController
 
   def show
     @user = ClientUser.find(params[:id])
+    binding.pry
   end
 
   def edit
