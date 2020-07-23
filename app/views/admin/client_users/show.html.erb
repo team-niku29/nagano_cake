@@ -1,2 +1,39 @@
-<h1>Admin::ClientUsers#show</h1>
-<p>Find me in app/views/admin/client_users/show.html.erb</p>
+<div class="contents">
+
+<h2><%= @user.family_name+@user.first_name%>さんの会員詳細</h2>
+
+顧客ID　　<%= @user.id %>
+
+<% if @user.delete_status == false %>
+<p>有効会員</p>
+<% else %>
+<p>退会済み</p>
+<% end %>
+
+氏名
+<%= @user.family_name %>　  <%= @user.first_name %>
+
+フリガナ
+<%= @user.kana_family_name %>　<%= @user.kana_first_name %>
+
+郵便番号
+<%= @user.postal_code %>
+
+住所
+<%= @user.address %>
+
+電話番号
+<%= @user.tel %>
+
+メールアドレス
+<%= @user.email %>
+
+<%= link_to "編集する", edit_admin_client_user_path(@user.id) %>
+
+
+<div class="link">
+<%= link_to "注文一覧", admin_client_user_orders_path(@user.id, order_sort: 1) %>
+</div>
+
+
+</div>

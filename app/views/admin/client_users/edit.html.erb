@@ -1,2 +1,41 @@
-<h1>Admin::ClientUsers#edit</h1>
-<p>Find me in app/views/admin/client_users/edit.html.erb</p>
+<div class="contents">
+
+<h2><%= @user.family_name+@user.first_name%>さんの会員情報編集</h2>
+
+会員ID　　<%= @user.id %>
+<%= form_for @user, url:admin_client_user_path(@user) do |f| %>
+
+<div>
+氏名　　　
+<%= f.text_field :family_name %>　<%= f.text_field :first_name %>
+</div>
+<div>
+フリガナ　　　
+<%= f.text_field :kana_family_name %>　<%= f.text_field :kana_first_name %>
+</div>
+<div>
+郵便番号　　　
+<%= f.text_field :postal_code %>
+</div>
+<div>
+住所　　　
+<%= f.text_field :address %>
+</div>
+<div>
+電話番号　　　
+<%= f.text_field :tel %>
+</div>
+<div>
+メールアドレス　　　
+<%= f.email_field :email %>
+</div>
+<div>
+会員ステータス　　
+<label><%= f.radio_button :delete_status, false %>有効</label>　<label><%= f.radio_button :delete_status, true %>退会済み</label>
+</div>
+
+<%= f.submit "変更を保存する" %>
+
+<% end %>
+
+</div>
