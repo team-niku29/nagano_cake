@@ -59,7 +59,9 @@ Rails.application.routes.draw do
      #resources :orders, only: [:index]
      get 'orders/top' => 'orders#top'
      resources :client_users, only: [:index, :show, :edit, :update] do
-      resources :orders, only: [:index, :show, :update]
+      resources :orders, only: [:index, :show, :update] do
+      resources :order_items, only: [:update]
+      end
     end
     resources	:products, only: [:new, :create, :index, :show, :edit, :update]
     resources	:genres, only: [:create, :index, :edit, :update]
