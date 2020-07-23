@@ -1,17 +1,49 @@
 <h1>Orders#address_check</h1>
 <p>Find me in app/views/orders/address_check.html.erb</p>
 
-	<def>
-		<%= form_for($payment) do |f| %>
-			<%= f.radio_button $payment, 0 %>クレジットカード<br>
-			<%= f.radio_button $payment, 1 %>銀行振込<br>
-		<% end %>
-	</def>
-
-	<def>
-
-	</def>
+<h2>注文情報</h2>
 
 	<div>
-		<%= link_to "注文内容確認", client_user_order_check_path %>
+		<h3>支払い方法</h3>
+		<%= radio_button_tag :payment_selection, "0" %>クレジットカード<br>
+		<%= radio_button_tag :payment_selection, "1" %>銀行振込<br>
+	</div>
+
+
+	<div>
+		<h3>お届け先</h3>
+			<%= radio_button_tag :address_selection, "0" %>ご自身の住所<br>
+			<%= @client_user.postal_code %>
+			<%= @client_user.address %>
+			<%= @client_user.family_name %>
+			<%= @client_user.first_name %><br>
+
+			<%= radio_button_tag :address_selection, "1" %>登録済住所から選択<br>
+
+			<%= Address.where(client_user_id: current_client_user.id).map { |e| e.postal_code } %>
+			<%= Address.where(client_user_id: current_client_user.id).map { |e| e.address } %>
+			<%= Address.where(client_user_id: current_client_user.id).map { |e| e.name } %><br>
+
+			<%= radio_button_tag :address_selection, "2" %>新しいお届け先<br>
+
+		<table>
+			<%= form_with(model:[@client_user,@address]) do |f| %>
+				<tr>
+					<td>郵便番号(ハイフンなし)</td>
+					<td><%= f.text_field :postal_code %></td>
+				</tr>
+				<tr>
+					<td>住所</td>
+					<td><%= f.text_field :address %></td>
+				</tr>
+				<tr>
+					<td>宛名</td>
+					<td><%= f.text_field :name %></td>
+				</tr>
+				<tr>
+					<td><%= link_to "注文内容確認", client_user_order_check_path %></td>
+				</tr>
+
+			<% end %>
+		</table>
 	</div>
