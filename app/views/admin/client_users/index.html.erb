@@ -1,2 +1,31 @@
-<h1>Admin::ClientUsers#index</h1>
-<p>Find me in app/views/admin/client_users/index.html.erb</p>
+<div class="container">
+	<h1>会員一覧画面</h1>
+
+	<table class="table">
+		<thead>
+			<tr class="info">
+				<th>会員ID</th>
+				<th>氏名</th>
+				<th>メールアドレス</th>
+				<th>ステータス</th>
+			</tr>
+		</thead>
+
+		<% @client_users.each do |user| %>
+			<tbody>
+				<tr>
+					<td><%= user.id %></td>
+					<td><%= user.family_name %><%= user.first_name %></td>
+					<td><%= user.email %></td>
+					<td><% if user.delete_status == true %>
+								<%= "退会済み" %>
+							<% else %>
+								<%= "有効" %>
+							<% end %>
+					</td>
+				</tr>
+			</tbody>
+		<% end %>
+	</table>
+	<%= paginate @client_users %>
+</div>

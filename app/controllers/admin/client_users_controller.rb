@@ -1,5 +1,6 @@
 class Admin::ClientUsersController < ApplicationController
   def index
+    @client_users = ClientUser.page(params[:page]).reverse_order
   end
 
   def show
@@ -9,7 +10,7 @@ class Admin::ClientUsersController < ApplicationController
   def edit
     @user = ClientUser.find(params[:id])
   end
-  
+
   def update
     @user = ClientUser.find(params[:id])
     @user.update(user_params)
