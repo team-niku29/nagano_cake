@@ -1,10 +1,61 @@
 <h1>マイページ</h1>
-<p>登録情報</p>
-<%=link_to("編集する", edit_client_user_path) %>
-<%=link_to("パスワードを変更する", ) %>
-
-<table>
-</table>
-
-<%=link_to("配送先", client_user_addresses_path(current_client_user.id)) %>
-<%=link_to("注文履歴", client_user_orders_path(current_client_user.id)) %>
+<div class ="container">
+  <div class = "row">
+    <tr>
+      <p>登録情報</p>
+      <%=link_to("編集する", edit_client_user_path, class: "btn btn-primary") %>
+      <%=link_to("パスワードを変更する", edit_client_user_password_path ,class: "btn btn-primary") %>
+    </tr>
+    <div class="container-fluid">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">氏名</th>
+            <td>
+              <%= @client_users.family_name %>
+              <%= @client_users.first_name %>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">カナ</th>
+            <td>
+            <%= @client_users.kana_family_name %>
+            <%= @client_users.kana_first_name %>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">郵便番号</th>
+            <td>
+            <%= @client_users.postal_code %>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">住所</th>
+            <td>
+            <%= @client_users.address %>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">電話番号</th>
+            <td>
+            <%= @client_users.tel %>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">メールアドレス</th>
+            <td>
+            <%= @client_users.email %>
+            </td>
+          </tr>
+      </table>
+    </div>
+    <%=link_to("配送先", client_user_addresses_path(current_client_user.id), class: "btn btn-primary") %>
+    <%=link_to("注文履歴", client_user_orders_path(current_client_user.id), class: "btn btn-primary") %>
+  </div>
+</div>
