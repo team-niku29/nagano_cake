@@ -1,6 +1,5 @@
 class ProductsController < ApplicationController
 
-  @TAX = 1.08
 
   def index
   end

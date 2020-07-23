@@ -1,6 +1,5 @@
 class CartsController < ApplicationController
 
-  @TAX = 1.08
 
   def index
     @total = 0                #合計計算用
