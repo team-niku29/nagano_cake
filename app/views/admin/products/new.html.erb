@@ -1,32 +1,36 @@
-<div class="contents">
+<div class="imageform">
+        <%= attachment_image_tag(@product, :image, :fill, 100, 100, fallback: "no_image.jpg") %>
+    </div>
 
     <%= form_for @product,url:admin_products_path do |f| %>
 
-    <div class="field">
-        <%= f.label :name, '商品名' %>
-        <%= f.text_field :name %>
-    </div>
-    <div class="field">
-        <%= f.label :introduction, '商品説明' %>
-        <%= f.text_area :introduction %>
-    </div>
-    <div class="field">
-        <%= f.label :genre_id, 'ジャンル' %>
-        <%= f.select :genre_id, ["ケーキ","1"] %>
-    </div>
-    <div class="field">
-        <%= f.label :price_excluding, '税抜価格' %
-        <%= f.text_field :price_excluding %>
-    </div>
-    <div class="field">
-        <%= f.label :out_of_stock, '販売ステータス' %>
-        <%= f.select :out_of_stock, [["販売中","falth"], ["販売中止中","truth"]] %>
-    </div>
+    <div class="information">
 
-    <div class="actions">
-        <%= f.submit "新規登録" %>
+        <%= f.attachment_field :image, class: "user_image" %>
+        <div class="field">
+            <%= f.label :name, '商品名' %>
+            <%= f.text_field :name %>
+        </div>
+        <div class="field">
+            <%= f.label :introduction, '商品説明' %>
+            <%= f.text_area :introduction %>
+        </div>
+        <div class="field">
+            <%= f.label :genre_id, 'ジャンル' %>
+            <%= f.collection_select :genre_id, Genre.all, :id, :name %>
+        </div>
+        <div class="field">
+            <%= f.label :price_excluding, '税抜価格' %>
+            <%= f.text_field :price_excluding %>
+        </div>
+        <div class="field">
+            <%= f.label :out_of_stock, '販売ステータス' %>
+            <%= f.select :out_of_stock, [["販売中","falth"], ["販売中止中","truth"]] %>
+        </div>
+
+        <div class="actions">
+            <%= f.submit "新規登録" %>
+        </div>
+        <% end %>
+
     </div>
-
-    <% end %>
-
-</div>
