@@ -1,25 +1,28 @@
-<div class="container">
-	<h1>ジャンル一覧・追加</h1>
+<h1>ジャンル一覧・追加</h1>
 	<div class="row">
 		<%= form_for @genre, url: admin_genres_path do |f| %>
-		<ul class="list-inline">
-			<li>
-				<h4>ジャンル</h4>
-			</li>
-			<li><%= f.text_field :name, class: "form-control",placeholder: "ジャンルを入力" %></li>
-			<li>
-				<%= f.radio_button :invalid_status, false %>
-				<%= f.label :invalid_status, '無効', value: false %>
-				<%= f.radio_button :invalid_status, true %>
-				<%= f.label :invalid_status, "有効", value: true %>
-			</li>
-			<li><%= f.submit '追加', class: "btn btn-primary"  %></li>
-		</ul>
+			<ul class="list-inline">
+				<li>
+					<h4>ジャンル</h4>
+				</li>
+				<li><%= f.text_field :name, class: "form-control",placeholder: "ジャンルを入力" %></li>
+				<li>
+					<%= f.radio_button :invalid_status, false %>
+					<%= f.label :invalid_status, '無効', value: false %>
+					<%= f.radio_button :invalid_status, true %>
+					<%= f.label :invalid_status, "有効", value: true %>
+				</li>
+				<li><%= f.submit '追加', class: "btn btn-primary"  %></li>
+			</ul>
 		<% end %>
 
 		<table class="table">
 			<thead>
 				<tr>
+
+					<th class="col-lg-4">ジャンル</th>
+					<th class="col-lg-4">状態</th>
+					<th class="col-lg-4"></th>
 					<th>ジャンル</th>
 					<th>状態</th>
 					<th></th>
@@ -27,20 +30,33 @@
 			</thead>
 
 			<% @genres.each do |genre| %>
-			<tbody>
-				<tr>
-					<th><%= genre.name %></th>
-					<th><% if genre.invalid_status == false %>
-						<%= "無効" %>
-						<% else %>
-						<%= "有効" %>
-						<% end %>
-					</th>
-					<th>
-
-					</th>
-				</tr>
-			</tbody>
+				<tbody>
+					<tr>
+						<td><%= genre.name %></td>
+						<td><% if genre.invalid_status == false %>
+								<%= "無効" %>
+							<% else %>
+								<%= "有効" %>
+							<% end %>
+						</td>
+						<td>
+							<%= link_to "編集する", admin_genres_edit_path(genre), class: "edit_#{genre.id}, btn btn-primary" %>
+						</td>
+					</tr>
+				</tbody>
+				<tbody>
+					<tr>
+						<th><%= genre.name %></th>
+						<th><% if genre.invalid_status == false %>
+							<%= "無効" %>
+							<% else %>
+							<%= "有効" %>
+							<% end %>
+						</th>
+						<th>
+						</th>
+					</tr>
+				</tbody>
 			<% end %>
 		</table>
 	</div>
