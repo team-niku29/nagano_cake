@@ -2,10 +2,7 @@
 
 <h2><%= @user.family_name+@user.first_name%>さんの会員詳細</h2>
 
-顧客ID　　
-<%= form_for @user do |f| %>
-<%= f.text_field :id, value: @user.id ,readonly: true, style: "border:none" %>
-<% end %>
+顧客ID　　<%= @user.id %>
 
 <% if @user.delete_status == false %>
 <p>有効会員</p>
@@ -31,7 +28,7 @@
 メールアドレス
 <%= @user.email %>
 
-<%= link_to "編集する", admin_client_users_show_path(@user.id) %>
+<%= link_to "編集する", edit_admin_client_user_path(@user.id) %>
 
 
 <div class="link">
