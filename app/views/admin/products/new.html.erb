@@ -12,10 +12,10 @@
     </div>
     <div class="field">
         <%= f.label :genre_id, 'ジャンル' %>
-        <%= f.select :genre_id, ["ケーキ","1"] %>
+        <%= f.select :genre_id, [["ケーキ","1"], ["クッキー","2"]] %>
     </div>
     <div class="field">
-        <%= f.label :price_excluding, '税抜価格' %
+        <%= f.label :price_excluding, '税抜価格' %>
         <%= f.text_field :price_excluding %>
     </div>
     <div class="field">
