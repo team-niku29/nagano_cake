@@ -8,7 +8,8 @@ class Admin::OrdersController < ApplicationController
     when "0"
       @orders = Order.where(created_at: Date.today)
     when "1"
-      @user = ClientUser.find(params[:id]) #idの取得方法はあとで考えます Shoki
+      binding.pry
+      @user = ClientUser.find(params[:user][:id])
       @orders = @user.orders
     else
       @orders = Order.all
@@ -18,7 +19,6 @@ class Admin::OrdersController < ApplicationController
   
   def show
     @order = Order.find(params[:id])
-    @statuses = Order.select(:status_flg)
     @items = @order.order_items
     @total_price = 0
     @items.each do |item|
@@ -30,7 +30,7 @@ class Admin::OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
     @order.update(status_params)
-    redirect_to admin_client_user_orders_path
+    redirect_to admin_client_user_order_path(@order.id)
   end
 
   private

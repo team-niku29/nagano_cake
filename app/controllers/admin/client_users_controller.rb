@@ -3,6 +3,7 @@ class Admin::ClientUsersController < ApplicationController
   end
 
   def show
+    @user = ClientUser.find(params[:id])
   end
 
   def edit

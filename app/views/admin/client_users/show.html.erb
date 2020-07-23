@@ -1,3 +1,36 @@
+<div class="contents">
 
-<%= link_to "注文一覧", admin_orders_index_path(order_sort: 1) %>
+<h2><%= @user.family_name+@user.first_name%>さんの会員詳細</h2>
 
+顧客ID　　
+<%= form_for @user do |f| %>
+<%= f.text_field :id, value: @user.id ,readonly: true, style: "border:none" %>
+<% end %>
+
+氏名
+<%= @user.family_name %>　  <%= @user.first_name %>
+
+フリガナ
+<%= @user.kana_family_name %>　<%= @user.kana_first_name %>
+
+郵便番号
+<%= @user.postal_code %>
+
+住所
+<%= @user.address %>
+
+電話番号
+<%= @user.tel %>
+
+メールアドレス
+<%= @user.email %>
+
+<%= link_to "編集する", admin_client_users_show_path(@user.id) %>
+
+
+<div class="link">
+<%= link_to "注文一覧", admin_orders_index_path(@user.id, order_sort: 1) %>
+</div>
+
+
+</div>
