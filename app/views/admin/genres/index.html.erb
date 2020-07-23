@@ -1,7 +1,20 @@
-<h1>ジャンル一覧・追加</h1>
 <div class="container">
+	<h1>ジャンル一覧・追加</h1>
 	<div class="row">
 		<%= form_for @genre, url: admin_genres_path do |f| %>
+<<<<<<< HEAD
+			<ul class="list-inline">
+				<li><h4>ジャンル</h4></li>
+				<li><%= f.text_field :name, class: "form-control",placeholder: "ジャンルを追加" %></li>
+					<li>
+  						<%= f.radio_button :invalid_status, false %>
+						<%= f.label :invalid_status, '無効', value: false %>
+  						<%= f.radio_button :invalid_status, true %>
+ 						<%= f.label :invalid_status, "有効", value: true %>
+					</li>
+				<li><%= f.submit '追加', class: "btn btn-primary"  %></li>
+			</ul>
+=======
 		<ul class="list-inline">
 			<li>
 				<h4>ジャンル</h4>
@@ -15,18 +28,41 @@
 			</li>
 			<li><%= f.submit '追加', class: "btn btn-primary"  %></li>
 		</ul>
+>>>>>>> b4492d989f956dda69c7a01fdd03e7b29fded364
 		<% end %>
 
 		<table class="table">
 			<thead>
 				<tr>
+<<<<<<< HEAD
+					<th class="col-lg-4">ジャンル</th>
+					<th class="col-lg-4">状態</th>
+					<th class="col-lg-4"></th>
+=======
 					<th>ジャンル</th>
 					<th>状態</th>
 					<th></th>
+>>>>>>> b4492d989f956dda69c7a01fdd03e7b29fded364
 				</tr>
 			</thead>
 
 			<% @genres.each do |genre| %>
+<<<<<<< HEAD
+				<tbody>
+					<tr>
+						<td><%= genre.name %></td>
+						<td><% if genre.invalid_status == false %>
+								<%= "無効" %>
+							<% else %>
+								<%= "有効" %>
+							<% end %>
+						</td>
+						<td>
+							<%= link_to "編集する", admin_genres_edit_path(genre), class: "edit_#{genre.id}, btn btn-primary" %>
+						</td>
+					</tr>
+				</tbody>
+=======
 			<tbody>
 				<tr>
 					<th><%= genre.name %></th>
@@ -41,6 +77,7 @@
 					</th>
 				</tr>
 			</tbody>
+>>>>>>> b4492d989f956dda69c7a01fdd03e7b29fded364
 			<% end %>
 		</table>
 	</div>
