@@ -8,7 +8,6 @@ class Admin::ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-    binding.pry
     if @product.save
     redirect_to admin_products_path
     else
@@ -23,7 +22,7 @@ class Admin::ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-    @genre = Genre.find(params[:id])
+    @genre = @product.genre.name
   end
 
   def edit

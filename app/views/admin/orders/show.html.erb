@@ -4,7 +4,7 @@
     </div>
 
     <div class="order_show">
-        <h2>購入者　　　　　　<%= link_to @order.client_user.family_name+@order.client_user.first_name%></h2>
+        <h2>購入者　　　　　　<%= link_to @order.client_user.family_name+@order.client_user.first_name, admin_client_user_path(@order.client_user_id)%></h2>
         <h2>配送先　　　　　　<%= @order.shipping_address %></h2>
         <h2>支払い方法　　　　<%= @order.payment_flg %></h2>
         <h2>注文ステータス　　

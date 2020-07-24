@@ -3,7 +3,7 @@ class Admin::OrdersController < ApplicationController
   layout 'admin'
 
   def top
-    @orders = Order.all
+    @orders = Order.where(created_at: Date.today).count
   end
 
   def index
