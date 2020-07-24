@@ -1,37 +1,35 @@
-<h2><%= @user.family_name+@user.first_name%>さんの会員情報編集</h2>
+<p class="lead">
+<%= @user.family_name+@user.first_name%>さんの会員情報編集</h2>
+</p>
 
-会員ID　　<%= @user.id %>
 <%= form_for @user, url:admin_client_user_path(@user) do |f| %>
+<ul class="dl-horizontal">
+<dt>会員ID</dt>
+<dd><%= @user.id %></dd>
 
-<div>
-氏名　　　
-<%= f.text_field :family_name %>　<%= f.text_field :first_name %>
-</div>
-<div>
-フリガナ　　　
-<%= f.text_field :kana_family_name %>　<%= f.text_field :kana_first_name %>
-</div>
-<div>
-郵便番号　　　
-<%= f.text_field :postal_code %>
-</div>
-<div>
-住所　　　
-<%= f.text_field :address %>
-</div>
-<div>
-電話番号　　　
-<%= f.text_field :tel %>
-</div>
-<div>
-メールアドレス　　　
-<%= f.email_field :email %>
-</div>
-<div>
-会員ステータス　　
-<label><%= f.radio_button :delete_status, false %>有効</label>　<label><%= f.radio_button :delete_status, true %>退会済み</label>
-</div>
+<dt>氏名</dt>
+<dd><%= f.text_field :family_name %>　<%= f.text_field :first_name %></dd>
 
-<%= f.submit "変更を保存する" %>
+<dt>フリガナ</dt>
+<dd><%= f.text_field :kana_family_name %>　<%= f.text_field :kana_first_name %></dd>
+
+<dt>郵便番号</dt>
+<dd><%= f.text_field :postal_code %>
+
+<dt>住所</dt>
+<dd><%= f.text_field :address %></dd>
+
+<dt>電話番号</dt>
+<dd><%= f.text_field :tel %></dd>
+
+<dt>メールアドレス</dt>
+<dd><%= f.email_field :email %></dd>
+
+<dt>会員ステータス</dt>
+<dd class="radio"><label><%= f.radio_button :delete_status, false %>有効</label>　<label><%= f.radio_button :delete_status, true %>退会済み</label></dd>
+
+<dt><%= f.submit "変更を保存する", class:"btn btn-primary"%></dt>
 
 <% end %>
+
+</ul>
