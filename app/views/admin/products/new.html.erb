@@ -26,7 +26,7 @@
         </div>
         <div class="field">
             <%= f.label :out_of_stock, '販売ステータス' %>
-            <%= f.select :out_of_stock, [["販売中","falth"], ["販売中止中","truth"]] %>
+            <%= f.select :out_of_stock, [["販売中", 0], ["販売中止中", 1]] %>
         </div>
 
         <div class="actions">
