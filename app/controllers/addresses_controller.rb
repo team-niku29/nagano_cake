@@ -1,5 +1,9 @@
 class AddressesController < ApplicationController
   def index
+    @address = Address.new
+    @client_user = current_client_user
+        
+
   end
 
   def create
@@ -9,6 +13,8 @@ class AddressesController < ApplicationController
       redirect_to request.referer, notice: "successfully created address!"#保存された場合の移動先を指定。
     else
       redirect_to request.referer
+      binding.pry
+      
     end
   end
 

@@ -1,2 +1,22 @@
-<h1>Addresses#index</h1>
-<p>Find me in app/views/addresses/index.html.erb</p>
+<h5>配送先登録/一覧</h5>
+<table>
+<%= form_with model: [@client_user, @address] do |f| %>
+
+<tr>
+  <td>郵便番号(ハイフンなし)</td>
+  <td><%= f.text_field :postal_code %></td>
+</tr>
+<tr>
+  <td>住所</td>
+  <td><%= f.text_field :address %></td>
+</tr>
+<tr>
+  <td>届け先名</td>
+  <td><%= f.text_field :name %></td>
+</tr>
+
+</table>
+<%= f.submit %>
+<%end %>
+<table>
+</table>
