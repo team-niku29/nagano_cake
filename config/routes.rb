@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     get 'client_users/index'
     get 'client_users/show'
     get 'client_users/edit'
+    get 'client_users/search'
   end
   namespace :admin do
     get 'genres/index'

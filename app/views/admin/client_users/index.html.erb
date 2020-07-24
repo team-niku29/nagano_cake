@@ -14,7 +14,7 @@
 			<tbody>
 				<tr>
 					<td><%= user.id %></td>
-					<td><%= user.family_name %><%= user.first_name %></td>
+					<td><%= link_to user.family_name+user.first_name, admin_client_user_path(user.id) %></td>
 					<td><%= user.email %></td>
 					<td><% if user.delete_status == true %>
 								<%= "退会済み" %>
