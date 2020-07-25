@@ -6,6 +6,7 @@ class AddressesController < ApplicationController
   end
 
   def create
+
     @address = Address.new(address_params) #addressモデルのテーブルを使用しているのでaddressコントローラで保存する。
     @address.client_user_id = current_client_user.id
     if @address.save #入力されたデータをdbに保存する。

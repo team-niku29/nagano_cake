@@ -19,8 +19,8 @@ class CartsController < ApplicationController
 
   def update
     @cart = Cart.find(params[:id])
-    if @cart.update(book_params)
-      redirect_to @book, notice: "successfully updated book!"
+    if @cart.update(cart_params)
+      redirect_to request.referer, notice: "個数を変更しました!"
     else #if文でエラー発生時と正常時のリンク先を枝分かれにしている。
       redirect_to request.referer
     end
@@ -28,15 +28,15 @@ class CartsController < ApplicationController
 
   def destroy
     @cart = Cart.find(params[:id])
-    binding.pry
     @cart.destroy
     redirect_to request.referer, notice: "商品をカートから取り出しました!"
   end
 
   def all_destroy
-    @cart = current_client_user_carts_path
-    @cart.destroy
-    #session[:cart_id] = nil
+    @client_user = current_client_user
+    @carts = @client_user.carts
+    @carts.destroy_all
+    redirect_to request.referer, notice: "カートから全ての商品を取り出しました!"
   end
 
   private
