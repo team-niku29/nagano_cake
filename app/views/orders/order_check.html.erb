@@ -3,39 +3,41 @@
 
 <h1>注文情報確認</h1>
 
-	<div class="col-xs-6">
-		<table class="table table-hover table-inverse">
-			<thead>
-				<tr>
-					<th>商品名</th>
-					<th>単価(税込)</th>
-					<th>数量</th>
-					<th>小計</th>
-				</tr>
-			</thead>
-
-			<tbody>
-				<% @carts.each do |cart| %>
+	<%= form_with(model:[@client_user,@order], local: true) do |f| %>
+		<div class="col-xs-6">
+			<table class="table table-hover table-inverse">
+				<thead>
 					<tr>
-						<td><%= cart.product.name %></td>
-						<td><%= @price = (cart.product.price_excluding * @TAX).ceil %></td>
-						<td><%= cart.quantity %></td>
-						<td><%= @subtotal = @price * cart.quantity %></td>
+						<th>商品名</th>
+						<th>単価(税込)</th>
+						<th>数量</th>
+						<th>小計</th>
 					</tr>
-					<% @total = @total + @subtotal %>
-				<% end %>
-			</tbody>
-		</table>
-	</div>
+				</thead>
+
+				<tbody>
+					<% @carts.each do |cart| %>
+						<tr>
+							<td><%= cart.product.name %></td>
+							<td><%= @price = (cart.product.price_excluding * @TAX).ceil %></td>
+							<td><%= cart.quantity %></td>
+							<td><%= @subtotal = @price * cart.quantity %></td>
+						</tr>
+						<% @total = @total + @subtotal %>
+						<% @total_quantity = @total_quantity + cart.quantity %>
+					<% end %>
+					<%= f.hidden_field :total_quantity , :value => @total_quantity %>
+				</tbody>
+			</table>
+		</div>
 
 		<div class="col-xs-2">
 			<table class="table table-hover table-inverse">
 				<thead>
 					<tr>
 						<th>送料</th>
-						<td>
-							800
-						</td>
+						<td>800</td>
+						<%= f.hidden_field :charriage , :value => "800" %>
 					</tr>
 					<tr>
 						<th>商品合計</th>
@@ -44,6 +46,7 @@
 					<tr>
 						<th>請求金額</th>
 						<td><%= @total + 800 %></td>
+						<%= f.hidden_field :billing_amount , :value => @total + 800 %>
 					</tr>
 				</thead>
 			</table>
@@ -52,13 +55,18 @@
 		<div class="col-xs-9">
 			<h2>お支払い方法</h2>
 			<%= @payment %>
-
+			<%= f.hidden_field :payment_flg , :value => @payment_flg %>
 			<h2>お届け先</h2>
 			<%= @postal_code %>
-			<%= @address %><br>
-			<%= @name %>
+			<%= f.hidden_field :postal_code , :value => @postal_code %>
+			<%= @shipping_address %>
+			<%= f.hidden_field :shipping_address , :value => @shipping_address %>
+			<%= @full_name %><br>
+			<%= f.hidden_field :shipping_name , :value => @full_name %>
 		</div>
 
-	<div class="col-xs-9">
-		<%= link_to "注文する", client_user_thanks_path %>
-	</div>
+		<div class="col-xs-9">
+			<%= f.submit %>
+			<%= link_to "注文する", client_user_thanks_path %>
+		</div>
+	<% end %>
