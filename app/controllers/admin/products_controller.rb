@@ -22,7 +22,7 @@ class Admin::ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-    @genre = Genre.find(params[:id])
+    @genre = @product.genre.name
   end
 
   def edit
