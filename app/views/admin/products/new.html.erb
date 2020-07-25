@@ -1,2 +1,36 @@
-<h1>Admin::Products#new</h1>
-<p>Find me in app/views/admin/products/new.html.erb</p>
+<div class="row">
+    <div class="col-md-4">
+        <%= attachment_image_tag(@product, :image, :fill, 400, 400, fallback: "no_image.jpg") %>
+        <%= form_for @product,url:admin_products_path do |f| %>
+
+        <%= f.attachment_field :image, class: "user_image" %>
+    </div>
+
+    <div class="col-md-4">
+        <div class="field">
+            <%= f.label :name, '商品名' %>
+            <%= f.text_field :name %>
+        </div>
+        <div class="field">
+            <%= f.label :introduction, '商品説明' %>
+            <%= f.text_area :introduction %>
+        </div>
+        <div class="field">
+            <%= f.label :genre_id, 'ジャンル' %>
+            <%= f.collection_select :genre_id, Genre.all, :id, :name %>
+        </div>
+        <div class="field">
+            <%= f.label :price_excluding, '税抜価格' %>
+            <%= f.text_field :price_excluding %>
+        </div>
+        <div class="field">
+            <%= f.label :out_of_stock, '販売ステータス' %>
+            <%= f.select :out_of_stock, [["販売中", 0], ["販売中止中", 1]], class:"form-control" %>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+            <%= f.submit "新規登録", class:"btn btn-primary"%>
+        </div>
+        <% end %>
+</div>
