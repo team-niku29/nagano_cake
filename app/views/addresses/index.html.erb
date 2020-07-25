@@ -1,7 +1,9 @@
 <h5>配送先登録/一覧</h5>
+
+
+
 <table>
 <%= form_with model: [@client_user, @address] do |f| %>
-
 <tr>
   <td>郵便番号(ハイフンなし)</td>
   <td><%= f.text_field :postal_code %></td>
@@ -18,5 +20,28 @@
 </table>
 <%= f.submit %>
 <%end %>
-<table>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">郵便番号</th>
+      <th scope="col">住所</th>
+      <th scope="col">宛名</th>
+    </tr> 
+  <head>
+  <body>
+  <% @addresses.each do |address| %>
+    <tr>
+      <td> <%= address.postal_code %></td>
+      <td> <%= address.address %></td>
+      <td> <%= address.name %></td>
+      <td> <%= link_to("編集",edit_client_user_address_path(current_client_user, address)) %></td>
+
+    </tr>
+    <tr>
+    <tr>
+    </tr>
+    <tr>
+    </tr>
+  <% end %>
+  </body>
 </table>
