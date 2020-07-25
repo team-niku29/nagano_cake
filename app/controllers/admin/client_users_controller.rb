@@ -1,4 +1,7 @@
 class Admin::ClientUsersController < ApplicationController
+
+  layout 'admin'
+  
   def index
     @client_users = ClientUser.page(params[:page]).reverse_order
   end
