@@ -16,7 +16,7 @@
       <ul class="nav navbar-nav navbar-right">
         <% if client_user_signed_in? %>
           <li><%= link_to("マイページ", client_user_path(current_client_user.id), {class: "glyphicon glyphicon-home"}) %></li>
-          <li><%= link_to("商品一覧", products_index_path, {class: "glyphicon glyphicon-user"}) %></li>
+          <li><%= link_to("商品一覧", root_path, {class: "glyphicon glyphicon-user"}) %></li>
           <li><%= link_to("カート", client_user_carts_path(current_client_user.id), {class: "glyphicon glyphicon-book"}) %></li>
           <li><%= link_to("ログアウト", destroy_client_user_session_path, { method: :get ,class: "glyphicon glyphicon-log-out"}) %></li>
         <% else %>
