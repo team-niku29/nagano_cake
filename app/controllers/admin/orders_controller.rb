@@ -13,18 +13,19 @@ class Admin::OrdersController < ApplicationController
     when "1"
       @orders = Order.where(client_user_id: params[:client_user_id])
     else
-      @orders = Order.all
+      @orders = Order.all.order(created_at: "DESC")
     end
   end
   
   def show
+    @TAX = 1.08
     @order = Order.find(params[:id])
     @items = @order.order_items
     @total_price = 0
     @items.each do |item|
       @total_price += item.price * item.quantity
-      @total_price *= $tax
     end
+    @total_price *= @TAX
   end
 
   def update
