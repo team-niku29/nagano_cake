@@ -3,29 +3,29 @@ class Admin::OrdersController < ApplicationController
   layout 'admin'
 
   def top
-    @orders = Order.where(created_at: Date.today).count
+    @orders = Order.today_orders.count
   end
 
   def index
     case params[:order_sort]
     when "0"
-      @orders = Order.where(created_at: Date.today)
+      @orders = Order.today_orders.order(created_at: "DESC")
     when "1"
-      @orders = ClientUser.find(params[:client_user_id]).orders
+      @orders = Order.where(client_user_id: params[:client_user_id]).order(created_at: "DESC")
     else
-      @orders = Order.all
+      @orders = Order.all.order(created_at: "DESC")
     end
-    @orders = Order.all
   end
   
   def show
+    @TAX = 1.08
     @order = Order.find(params[:id])
     @items = @order.order_items
     @total_price = 0
     @items.each do |item|
       @total_price += item.price * item.quantity
-      @total_price *= $tax
     end
+    @total_price *= @TAX
   end
 
   def update
