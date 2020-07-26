@@ -16,7 +16,7 @@
 				<dd><%= @genre %></dd>
 
 				<dt>税込価格（税抜き価格）</dt>
-				<dd><%= @product.price_excluding * 1.08 %>(<%= @product.price_excluding %>)</dd>
+				<dd><%= (@product.price_excluding * 1.08).ceil %>(<%= @product.price_excluding %>)</dd>
 
 				<dt>販売ステータス</dt>
 				<dd><% if @product.out_of_stock == false %>

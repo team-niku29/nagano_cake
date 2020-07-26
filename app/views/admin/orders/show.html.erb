@@ -40,7 +40,7 @@
                 <td><%= item.name %></td>
                 <td><%= (item.price*@TAX).ceil %></td>
                 <td><%= item.quantity %></td>
-                <td><%= item.price*item.quantity*@TAX.ceil %></td>
+                <td><%= (item.price*item.quantity*@TAX).ceil %></td>
                 <td><%= item.production_status %></td>
                 <td>
                     <%= form_for [@order,item], url:admin_client_user_order_order_item_path(@order.client_user_id,@order.id,item.id) do |f| %>
