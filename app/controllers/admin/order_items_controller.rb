@@ -5,7 +5,8 @@ class Admin::OrderItemsController < ApplicationController
     def update
       @item = OrderItem.find(params[:id])
       @item.update(status_params)
-      redirect_to admin_client_user_order_path(@item.order_id)
+      redirect_to admin_client_user_order_path(@item.order.client_user_id, @item.order_id)
+
     end
 
     def status_params
