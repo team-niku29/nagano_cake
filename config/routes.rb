@@ -75,11 +75,11 @@ Rails.application.routes.draw do
     resources :addresses, only: [:index, :create, :edit, :update, :destroy]
     resources :carts, only: [:index, :create, :update, :destroy]
     delete '/carts' => 'carts#all_destroy'
+    get '/address_check' => 'orders#address_check'
+    get '/order_check' => 'orders#order_check'
+    get '/thanks' => 'orders#thanks'
     resources :orders, only: [:index, :show, :create] do
       resources :order_items, only: [:create]
-      get '/address_check' => 'orders#address_check'
-      get '/order_check' => 'orders#order_check'
-      get '/thanks' => 'orders#thanks'
     end
   end
   get '/home/about' => 'home#about'

@@ -16,6 +16,14 @@
 
  @import "bootstrap-sprockets";
  @import "bootstrap";
+ 
+ .field-form{
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+ }
 
  /*ページネーション自体のデザイン*/
 
