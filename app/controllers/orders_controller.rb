@@ -31,12 +31,17 @@ class OrdersController < ApplicationController
     @client_user = current_client_user
     @carts = @client_user.carts
     @carts.destroy_all
-
-    #サンクスページへ移動
     redirect_to client_user_thanks_path
   end
 
   def show
+    @order = Order.find(params[:id])
+    @subtotal = @order.total_quantity * @order.total_quantity
+    @order_items = @order.order_items
+    @total_price = 0
+    @order_items.each do |item|
+      @total_price += item.price * item.quantity
+    end
   end
 
   def address_check
