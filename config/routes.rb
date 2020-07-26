@@ -50,7 +50,7 @@ Rails.application.routes.draw do
   get 'client_users/show'
   get 'client_users/edit'
   get 'client_users/withdrawal'
-  
+
   # devise_scope :admins do
   #   '/admins/sign_out' => 'admins/devise/sessions#destroy'
   # end
@@ -78,9 +78,7 @@ Rails.application.routes.draw do
     get '/address_check' => 'orders#address_check'
     get '/order_check' => 'orders#order_check'
     get '/thanks' => 'orders#thanks'
-    resources :orders, only: [:index, :show, :create] do
-      resources :order_items, only: [:create]
-    end
+    resources :orders, only: [:index, :show, :create]
   end
   get '/home/about' => 'home#about'
   root 'products#index'
