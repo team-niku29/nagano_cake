@@ -4,19 +4,17 @@ class Admin::OrdersController < ApplicationController
 
   def top
     @orders = Order.today_orders.count
-    binding.pry
   end
 
   def index
     case params[:order_sort]
     when "0"
-      @orders = Order.where(created_at: Date.today)
+      @orders = Order.today_orders
     when "1"
-      @orders = ClientUser.find(params[:client_user_id]).orders
+      @orders = Order.where(client_user_id: params[:client_user_id])
     else
       @orders = Order.all
     end
-    @orders = Order.all
   end
   
   def show
