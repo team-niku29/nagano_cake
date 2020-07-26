@@ -1,2 +1,2 @@
-<div><h1>本日の注文件数</h1><h1><%= @orders.count %>件</h1>
-</div>
+
+<h1>本日の注文件数　　　　　　　<%= link_to @orders, admin_orders_index_path(order_sort: 0) %> 件</h1>
