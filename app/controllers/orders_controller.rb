@@ -1,6 +1,9 @@
 class OrdersController < ApplicationController
 
   def index
+    @client_user = current_client_user
+    @orders = @client_user.orders
+    #@order_items = @orders.order_items
   end
 
   def create
