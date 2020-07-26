@@ -9,8 +9,7 @@ class CartsController < ApplicationController
 
     @carts.each do |cart|
       @price = (cart.product.price_excluding * @TAX).ceil
-      @subtotal = @price * cart.quantity
-      @total = @total + @subtotal
+      @total = @total + @price * cart.quantity
     end
   end
 
