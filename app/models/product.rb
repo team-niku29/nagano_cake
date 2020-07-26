@@ -7,5 +7,5 @@ class Product < ApplicationRecord
   def self.search(search)
   return Genre.all unless search
   Genre.where([' content LIKE ?'], "%#{search}%")
-
+  end
 end
