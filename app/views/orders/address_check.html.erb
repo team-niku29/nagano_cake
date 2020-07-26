@@ -19,7 +19,7 @@
 			<%= @client_user.first_name %><br>
 
 			<%= radio_button_tag :address_selection, 1 %>登録済住所から選択<br>
-			<%= collection_select(:address, :address_id, @addresses, :id, :full_address, {:include_blank => true}) %><br>
+			<%= collection_select(:address, :address_id, @addresses, :id, :full_address, {:include_blank => true }) %><br>
 
 			<%= radio_button_tag :address_selection, 2 %>新しいお届け先<br>
 
