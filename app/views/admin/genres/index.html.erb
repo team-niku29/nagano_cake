@@ -19,13 +19,9 @@
 		<table class="table">
 			<thead>
 				<tr>
-
 					<th class="col-lg-4">ジャンル</th>
 					<th class="col-lg-4">状態</th>
 					<th class="col-lg-4"></th>
-					<th>ジャンル</th>
-					<th>状態</th>
-					<th></th>
 				</tr>
 			</thead>
 
@@ -42,19 +38,6 @@
 						<td>
 							<%= link_to "編集する", admin_genres_edit_path(genre), class: "edit_#{genre.id}, btn btn-primary" %>
 						</td>
-					</tr>
-				</tbody>
-				<tbody>
-					<tr>
-						<th><%= genre.name %></th>
-						<th><% if genre.invalid_status == false %>
-							<%= "無効" %>
-							<% else %>
-							<%= "有効" %>
-							<% end %>
-						</th>
-						<th>
-						</th>
 					</tr>
 				</tbody>
 			<% end %>
