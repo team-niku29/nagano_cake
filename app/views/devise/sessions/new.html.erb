@@ -1,24 +1,25 @@
-<h5>会員の方は<%= link_to("こちら", new_client_user_registration_path) %>からログイン </h5>
+<div class="center-block" style="width: 256px; text-align: center; background-color: #EEFFFF; border: 1px solid gray;">
+  <h5>会員の方はこちらからログイン </h5>
+  <%= form_for(resource, as: resource_name, url: new_session_path(resource_name)) do |f| %>
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
 
-<%= form_for(resource, as: resource_name, url: new_session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+    <div class="field">
+      <%= f.label :password %><br />
+      <%= f.password_field :password, autocomplete: "current-password" %>
+    </div>
 
-  
-  <%= link_to("=>パスワードを忘れた方はこちら")%>
-  <div class="actions">
-    <%= f.submit "ログイン" %>
+    
+    <h6><%= link_to "=>パスワードを忘れた方はこちら" %></h6>
+    <div class="actions">
+      <%= f.submit "ログイン" %>
+    </div>
+  <% end %>
+  <div>
+  <h5>登録がお済でない方</h5>
+  <%= link_to "こちら", '/client_users/sign_up' %>
   </div>
-<% end %>
-<div>
-<h5>登録がお済でない方</h5>
-<%= link_to "こちら", '/client_users/sign_up' %>
 </div>
-

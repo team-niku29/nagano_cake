@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+ 
+
   def index
   end
 
@@ -8,8 +10,14 @@ class OrdersController < ApplicationController
     render "order_items/create"
   end
 
-
   def show
+    @order = Order.find(params[:id])
+    @subtotal = @order.total_quantity * @order.total_quantity
+    @order_items = @order.order_items
+    @total_price = 0
+    @order_items.each do |item|
+      @total_price += item.price * item.quantity
+    end
   end
 
   def address_check
