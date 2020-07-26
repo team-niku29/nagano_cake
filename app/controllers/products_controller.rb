@@ -7,6 +7,7 @@ class ProductsController < ApplicationController
       end
     end
   end
+
   def show
     @TAX = 1.08
     @product = Product.find(params[:id])
@@ -17,5 +18,4 @@ class ProductsController < ApplicationController
   	else
   	end
   end
-
 end
