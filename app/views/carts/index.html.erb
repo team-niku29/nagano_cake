@@ -1,2 +1,54 @@
-<h1>Carts#index</h1>
-<p>Find me in app/views/carts/index.html.erb</p>
+
+	<div class="col-xs-6">
+		<h2>ショッピングカート</h2>
+
+		<%= link_to "カートを空にする",@client_user_cart_path, method: :delete %>
+
+		<table class="table table-hover table-inverse">
+			<thead>
+				<tr>
+					<th>商品名</th>
+					<th>単価(税込)</th>
+					<th>数量</th>
+					<th>小計</th>
+					<th colspan="1"></th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<% @carts.each do |cart| %>
+					<tr>
+						<td><%= cart.product.name %></td>
+						<td><%= @price = (cart.product.price_excluding * @TAX).ceil %></td>
+						<%= form_with(model:[@client_user,cart], local: true) do |f| %>
+							<td>
+								<%= f.select :quantity , [2,3,4,5,6,7,8,9,10], include_blank: "1" %>
+								<%= f.submit "変更する" %>
+							</td>
+							<td><%= @subtotal = @price * cart.quantity %></td>
+							<td><%= link_to "カートから商品を取り出す",client_user_cart_path(@client_user.id,cart.id), method: :delete %></td>
+						<% end %>
+					</tr>
+					<% @total = @total + @subtotal %>
+				<% end %>
+			</tbody>
+		</table>
+
+		<table class="table table-hover table-inverse">
+			<tr>
+				<td><%= link_to "買い物を続ける", root_path %></td>
+				<td></td>
+				<td></td>
+				<td>合計金額</td>
+				<td><%= @total %></td>
+			</tr>
+		</table>
+
+		<div>
+			<% if @total == 0 %>
+			<% else %>
+				<%= link_to "情報入力に進む", "/client_users/1/address_check" %>
+			<% end %>
+		</div>
+
+	</div>

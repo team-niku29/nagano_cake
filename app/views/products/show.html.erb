@@ -1,2 +1,35 @@
+
 <h1>Products#show</h1>
 <p>Find me in app/views/products/show.html.erb</p>
+
+<h1>商品紹介</h1>
+
+<div class="row">
+	<div class="col-xs-9">
+
+		<table class="table">
+			<tr>
+				<td>
+					<%= link_to (@product) do %>
+						<%= attachment_image_tag(@product, :image_id, :fill, 100, 100, fallback: "no_image.jpg") %><br>
+					<% end %>
+				</td>
+				<td>
+					<p><%= @product.name %></p>
+					<p><%= @product.introduction %></p>
+					<p>￥<%= @price %>(税込)</p>
+				</td>
+			</tr>
+		</table>
+
+  	<% if client_user_signed_in? %>
+  		<%= form_with(model:[@client_user,@cart]) do |f| %>
+			<%= f.select :quantity, [2,3,4,5,6,7,8,9,10], include_blank: "1", class: "col-xs-9 book_body" %>
+			<%= f.hidden_field :product_id_delivary , :value => @product.id %>
+			<%= f.submit "カートに入れる" %>
+		<% end %>
+	<% else %>
+	<% end %>
+
+	</div>
+</div>
