@@ -4,4 +4,8 @@ class Product < ApplicationRecord
   has_many :carts, dependent: :destroy
   attachment :image, destroy: false
 
+  def self.search(search)
+  return Genre.all unless search
+  Genre.where([' content LIKE ?'], "%#{search}%")
+
 end
