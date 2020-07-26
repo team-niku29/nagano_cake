@@ -9,9 +9,9 @@ class Admin::OrdersController < ApplicationController
   def index
     case params[:order_sort]
     when "0"
-      @orders = Order.today_orders
+      @orders = Order.today_orders.order(created_at: "DESC")
     when "1"
-      @orders = Order.where(client_user_id: params[:client_user_id])
+      @orders = Order.where(client_user_id: params[:client_user_id]).order(created_at: "DESC")
     else
       @orders = Order.all.order(created_at: "DESC")
     end
