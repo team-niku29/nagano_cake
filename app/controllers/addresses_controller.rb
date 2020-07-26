@@ -6,15 +6,12 @@ class AddressesController < ApplicationController
   end
 
   def create
-
     @address = Address.new(address_params) #addressモデルのテーブルを使用しているのでaddressコントローラで保存する。
     @address.client_user_id = current_client_user.id
     if @address.save #入力されたデータをdbに保存する。
       redirect_to request.referer, notice: "successfully created address!"#保存された場合の移動先を指定。
     else
       redirect_to request.referer
-      
-      
     end
   end
 
@@ -25,6 +22,9 @@ class AddressesController < ApplicationController
   end
 
   def destroy
+    @address = Address.find(params[:id])
+    @address.destroy
+    redirect_to client_user_addresses_path
   end
 
   private

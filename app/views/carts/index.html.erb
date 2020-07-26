@@ -22,14 +22,14 @@
 						<td><%= @price = (cart.product.price_excluding * @TAX).ceil %></td>
 						<%= form_with(model:[@client_user,cart], local: true) do |f| %>
 							<td>
-								<%= f.select :quantity , [2,3,4,5,6,7,8,9,10], include_blank: "1" %>
+								<%= f.select :quantity , [1,2,3,4,5,6,7,8,9,10] %>
 								<%= f.submit "変更する" %>
 							</td>
-							<td><%= @subtotal = @price * cart.quantity %></td>
+							<td><%= @price * cart.quantity %></td>
 							<td><%= link_to "カートから商品を取り出す",client_user_cart_path(@client_user.id,cart.id), method: :delete %></td>
 						<% end %>
 					</tr>
-					<% @total = @total + @subtotal %>
+					<% @total %>
 				<% end %>
 			</tbody>
 		</table>

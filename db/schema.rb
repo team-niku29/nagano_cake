@@ -10,7 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 2020_07_20_065013) do
 
   create_table "addresses", force: :cascade do |t|
@@ -71,7 +70,6 @@ ActiveRecord::Schema.define(version: 2020_07_20_065013) do
   end
 
   create_table "order_items", force: :cascade do |t|
-
     t.integer "order_id", null: false
     t.integer "product_id", default: 0, null: false
     t.string "name", default: "", null: false
