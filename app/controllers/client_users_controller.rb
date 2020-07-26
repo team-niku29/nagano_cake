@@ -7,9 +7,16 @@ class ClientUsersController < ApplicationController
   end
 
   def edit
+    @client_user = current_client_user
   end
 
   def update
+    @client_user = current_client_user
+    if @client_user.update(client_user_params)
+      redirect_to @client_user, notice: "会員情報を更新しました!"
+    else #if文でエラー発生時と正常時のリンク先を枝分かれにしている。
+      render "show"
+    end
   end
 
   def withdrawal
@@ -17,5 +24,10 @@ class ClientUsersController < ApplicationController
 
   def withdrawal_update
   end
-  
+
+  private
+
+  def client_user_params
+    params.require(:client_user).permit(:family_name,:first_name, :kana_family_name, :kana_first_name, :email, :postal_code, :address, :tel)
+  end
 end
