@@ -20,9 +20,14 @@ class ClientUsersController < ApplicationController
   end
 
   def withdrawal
+    @client_user = current_client_user
   end
 
   def withdrawal_update
+    @client_user = ClientUser.find(params[:client_user_id])
+    @client_user.delete_status = true
+    @client_user.save
+    redirect_to destroy_client_user_session_path
   end
 
   private
@@ -30,4 +35,5 @@ class ClientUsersController < ApplicationController
   def client_user_params
     params.require(:client_user).permit(:family_name,:first_name, :kana_family_name, :kana_first_name, :email, :postal_code, :address, :tel)
   end
+
 end

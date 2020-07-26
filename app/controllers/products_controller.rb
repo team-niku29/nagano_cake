@@ -3,7 +3,8 @@ class ProductsController < ApplicationController
   def index
     #退会ユーザーをアクセスさせない
     if client_user_signed_in?
-      if current_client_user.delete_status == false
+
+      if current_client_user.delete_status == true
         redirect_to destroy_client_user_session_path
       end
     end
