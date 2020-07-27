@@ -1,5 +1,5 @@
 class SearchController < ApplicationController
-    def search
+    def admin_search
         @range = params[:range]
         search = params[:search]
         @word = params[:word]
