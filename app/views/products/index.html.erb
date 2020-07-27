@@ -16,7 +16,7 @@
                         <% if @loop == 2 %>
                                 <td>
                                     <%= link_to(product) do %>
-                                        <%= attachment_image_tag product.image_id, :image_id, fallback: "no_image.jpg",size: "300x300" %><br>
+                                        <%= attachment_image_tag product.image_id, :image, fallback: "no_image.jpg",size: "300x300" %><br>
                                     <% end %>
                                     <%= link_to product.name, product_path(product.id) %><br>
                                     ¥<%= (product.price_excluding * @TAX).ceil %>円
@@ -27,7 +27,7 @@
                         <% else %>
                             <td>
                                 <%= link_to(product) do %>
-                                    <%= attachment_image_tag product.image_id, :image_id, fallback: "no_image.jpg",size: "300x300" %><br>
+                                    <%= attachment_image_tag product.image_id, :image, fallback: "no_image.jpg",size: "300x300" %><br>
                                 <% end %>
                                 <%= link_to product.name, product_path(product.id) %><br>
                                 ¥<%= (product.price_excluding * @TAX).ceil %>円
