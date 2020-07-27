@@ -12,10 +12,15 @@ class ProductsController < ApplicationController
     #商品一覧表示しない
     @TAX = 1.08
     @products = Product.page(params[:page]).reverse_order
+    @all_products = Product.all
     @number = 0
+    @loop = 0
 
-    @products.each do |product|
-      @number = @number + 1
+    @all_products.each do |product|
+      if product.out_of_stock == false
+        @number = @number + 1
+      else
+      end
     end
     # @genres = Genre.all.search(params[:name])
   end
