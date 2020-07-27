@@ -1,9 +1,13 @@
 
+<div class ="container">
 	<div class="col-xs-6">
 		<h2>ショッピングカート</h2>
 
-		<%= link_to "カートを空にする",@client_user_cart_path, method: :delete %>
 
+	<% if @total == 0 %>
+		<h3>カートは空です</h3>
+		<%= link_to "買い物を続ける", root_path %>
+	<% else %>
 		<table class="table table-hover table-inverse">
 			<thead>
 				<tr>
@@ -32,6 +36,7 @@
 					<% @total %>
 				<% end %>
 			</tbody>
+			<%= link_to "カートを空にする",@client_user_cart_path, method: :delete %>
 		</table>
 
 		<table class="table table-hover table-inverse">
@@ -43,6 +48,7 @@
 				<td><%= @total %></td>
 			</tr>
 		</table>
+	<% end %>
 
 		<div>
 			<% if @total == 0 %>
@@ -52,3 +58,4 @@
 		</div>
 
 	</div>
+</div>

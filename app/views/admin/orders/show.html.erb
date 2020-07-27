@@ -38,9 +38,9 @@
             <% @items.each do |item| %>
             <tr>
                 <td><%= item.name %></td>
-                <td><%= (item.price*$tax).ceil %></td>
+                <td><%= (item.price*@TAX).ceil %></td>
                 <td><%= item.quantity %></td>
-                <td><%= item.price*item.quantity*$tax %></td>
+                <td><%= (item.price*item.quantity*@TAX).ceil %></td>
                 <td><%= item.production_status %></td>
                 <td>
                     <%= form_for [@order,item], url:admin_client_user_order_order_item_path(@order.client_user_id,@order.id,item.id) do |f| %>
@@ -55,7 +55,7 @@
 </div>
 
 <div class="price_field">
-    <h3>商品合計　　　　　　　<%= @total_price %></h3>
+    <h3>商品合計　　　　　　　<%= @total_price.ceil %></h3>
     <h3>送料　　　　　　　　　<%= @order.charriage %></h3>
     <h3>請求金額合計　　　　　<%= @order.billing_amount %></h3>
 </div>

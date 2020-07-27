@@ -1,7 +1,7 @@
-<h1>Orders#address_check</h1>
-<p>Find me in app/views/orders/address_check.html.erb</p>
 
-<h2>注文情報</h2>
+<div class ="container">
+
+	<h2>注文情報</h2>
 
 	<%= form_for(@order, url: { controller: 'orders', action: 'order_check'}, html:{method:'get'} ) do |f| %>
 		<div>
@@ -42,4 +42,4 @@
 			</table>
 		</div>
 	<% end %>
-
+</div>
