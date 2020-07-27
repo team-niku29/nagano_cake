@@ -1,5 +1,4 @@
 
-<div class ="container">
 <p class="lead">商品一覧　全<%= @number %>件</p>
 
     <div class="col-xs-4">
@@ -11,32 +10,35 @@
         <table class="table table-striped table-hover table-inverse">
             <tbody>
                 <tr>
-                <% @products.each do |product| %>
-                    <% if product.out_of_stock == false %>
-                        <% if @loop == 2 %>
+                    <% @products.each do |product| %>
+                        <% if product.out_of_stock == false %>
+                            <% if product.genre.invalid_status == true %>
+                                <% if @loop == 3 %>
+                                        <td>
+                                            <%= link_to(product) do %>
+                                                <%= attachment_image_tag product, :image, fallback: "no_image.jpg",size: "200x200" %><br>
+                                            <% end %>
+                                            <h3><%= link_to product.name, product_path(product.id) %></h3>
+                                            <h3>¥<%= (product.price_excluding * @TAX).ceil %></h3>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                    <% @loop = 0 %>
+                            <% else %>
                                 <td>
                                     <%= link_to(product) do %>
-                                        <%= attachment_image_tag product.image_id, :image_id, fallback: "no_image.jpg",size: "300x300" %><br>
+                                        <%= attachment_image_tag product, :image, fallback: "no_image.jpg",size: "200x200" %><br>
                                     <% end %>
-                                    <%= link_to product.name, product_path(product.id) %><br>
-                                    ¥<%= (product.price_excluding * @TAX).ceil %>円
+                                    <h3><%= link_to product.name, product_path(product.id) %></h3>
+                                    <h3>¥<%= (product.price_excluding * @TAX).ceil %></h3>
                                 </td>
-                            </tr>
-                            <tr>
-                            <% @loop = 0 %>
+                                <% @loop += 1 %>
+                            <% end %>
+                            <% else %>
+                            <% end %>
                         <% else %>
-                            <td>
-                                <%= link_to(product) do %>
-                                    <%= attachment_image_tag product.image_id, :image_id, fallback: "no_image.jpg",size: "300x300" %><br>
-                                <% end %>
-                                <%= link_to product.name, product_path(product.id) %><br>
-                                ¥<%= (product.price_excluding * @TAX).ceil %>円
-                            </td>
-                            <% @loop += 1 %>
                         <% end %>
-                    <% else %>
                     <% end %>
-                <% end %>
                 </tr>
             </tbody>
         </table>
@@ -46,5 +48,4 @@
             </tr>
         </table>
     </div>
-</div>
 
