@@ -7,10 +7,10 @@
 				</li>
 				<li><%= f.text_field :name, class: "form-control",placeholder: "ジャンルを入力" %></li>
 				<li>
+					<%= f.radio_button :invalid_status, true ,checked: true%>
+					<%= f.label :invalid_status, "有効", value: true %>
 					<%= f.radio_button :invalid_status, false %>
 					<%= f.label :invalid_status, '無効', value: false %>
-					<%= f.radio_button :invalid_status, true %>
-					<%= f.label :invalid_status, "有効", value: true %>
 				</li>
 				<li><%= f.submit '追加', class: "btn btn-primary"  %></li>
 			</ul>
@@ -36,7 +36,7 @@
 							<% end %>
 						</td>
 						<td>
-							<%= link_to "編集する", admin_genres_edit_path(genre), class: "edit_#{genre.id}, btn btn-primary" %>
+							<%= link_to "編集する", edit_admin_genre_path(genre.id), class: "btn btn-primary" %>
 						</td>
 					</tr>
 				</tbody>

@@ -22,7 +22,11 @@
 	</div>
 	<div class="form-group">
 		<%= f.label :販売ステータス %>
-		<%= f.select :out_of_stock, [["販売中",0], ["販売中止中",1]] %>
+		<%= f.radio_button :out_of_stock, false %>
+ 		<%= f.label :out_of_stock, '販売中', value: false %>
+ 		<%= f.radio_button :out_of_stock, true %>
+		<%= f.label :out_of_stock, '販売中止', value: true %>
 	</div>
 	<%= f.submit "変更を保存", class: "btn btn-primary" %>
 	<% end %>
+	

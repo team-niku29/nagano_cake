@@ -2,7 +2,16 @@
 	<div class="col-xs-3">
        <%= render 'products/genre', genres: @genres %>
     </div>
-<p class="lead">商品一覧　全<%= @number %>件</p>
+
+
+<p class="lead">商品一覧 　全<%= @number %>件</p>
+
+    <table>
+        <tr>
+            <td><%= paginate @products %></td>
+        </tr>
+    </table>
+
     <div class="col-xs-4">
         <table>
             <tr>
@@ -28,7 +37,9 @@
                             <% else %>
                                 <td>
                                     <%= link_to(product) do %>
+
                                         <%= attachment_image_tag product, :image, fallback: "no_image.jpg",size: "200x200" %><br>
+
                                     <% end %>
                                     <h3><%= link_to product.name, product_path(product.id) %></h3>
                                     <h3>¥<%= (product.price_excluding * @TAX).ceil %></h3>
@@ -38,6 +49,18 @@
                             <% else %>
                             <% end %>
                         <% else %>
+
+                            <td>
+                                <%= link_to(product) do %>
+
+                                    <%= attachment_image_tag product, :image, fallback: "no_image.jpg",size: "200x200" %><br>
+
+                                <% end %>
+                                <%= link_to product.name, product_path(product.id) %><br>
+                                ¥<%= (product.price_excluding * @TAX).ceil %>円
+                            </td>
+                            <% @loop += 1 %>
+
                         <% end %>
                     <% end %>
                 </tr>
@@ -45,6 +68,7 @@
         </table>
         <table>
             <tr>
+                <td><%= paginate @products %></td>
             </tr>
         </table>
     </div>
