@@ -3,7 +3,7 @@ class Admin::ProductsController < ApplicationController
   before_action :authenticate_admin!
 
   layout 'admin'
-  
+
   def new
     @product = Product.new
   end
@@ -11,9 +11,8 @@ class Admin::ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-    redirect_to admin_products_path
+      redirect_to admin_products_path
     else
-      @product = Product.new
       render :new
     end
   end

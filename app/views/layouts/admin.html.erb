@@ -12,10 +12,10 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-default" style="background-color: #222;">
+        <nav class="navbar navbar-default" style="background-color: #192437;">
             <div class="container">
                 <nav class="nav navbar-nav navbar-left">
-                    <img src="/assets/NaganoCakeLogo.jpeg" alt="">
+                    <img src="/assets/nagano_cake_logo.png" alt="">
                 </nav>
                 <ul class="nav navbar-nav navbar-right">
                     <li><%= link_to("商品一覧", admin_products_path, {class: "glyphicon glyphicon-home"}) %>
@@ -28,8 +28,17 @@
                         <%= link_to("ログアウト", destroy_admin_session_path, { method: :get ,class: "glyphicon glyphicon-log-out"}) %>
                     </li>
                 </ul>
+                <%= form_tag(admin_search_path, method: :get) do %>
+            <ul class="nav navbar-nav navbar-right">
+            <li><%= text_field_tag (:word) %></li>
+            <li><%= select_tag 'range' ,options_for_select([['---選択してください---', ''], ['ユーザーを検索', '1'], ['商品を検索', '2']]) %></li>
+            <li><%= select_tag 'search', options_for_select([["前方一致(ユーザーの場合は、苗字)","forward_match"], ["後方一致（ユーザー検索の場合は、名前）","backward_match"]]) %></li>
+            <li><%= submit_tag "検索" %></li>
+            <% end %>
+            </ul>
             </div>
         </nav>
+
     </header>
 
     <div class="container">
