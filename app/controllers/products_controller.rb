@@ -1,12 +1,18 @@
 class ProductsController < ApplicationController
 
   def index
+    @TAX = 1.08
+    @all_products = Product.all
+    @genre = "全商品一覧"
+
     #ジャンル検索
     @genres = Genre.where(invalid_status: true)
+
     #管理者をアクセスさせない
     if admin_signed_in?
         redirect_to destroy_admin_session_path
     end
+
     #退会ユーザーをアクセスさせない
     if client_user_signed_in?
       if current_client_user.delete_status == true
@@ -15,8 +21,6 @@ class ProductsController < ApplicationController
     end
 
     #商品一覧表示しないものチェック
-    @TAX = 1.08
-    @all_products = Product.all
     @number = 0
     @loop = 0
 
@@ -35,8 +39,12 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @genres = Genre.where(invalid_status: false)
     @TAX = 1.08
+
+    #ジャンル検索
+    @genres = Genre.where(invalid_status: true)
+
+    #商品値段計算
     @product = Product.find(params[:id])
     @price = (@product.price_excluding * @TAX).ceil
   	if client_user_signed_in?
@@ -47,11 +55,14 @@ class ProductsController < ApplicationController
   end
 
   def search
-    @genres = Genre.where(invalid_status: true)
-    @products = Product.where(genre_id: params[:format])
-
     @TAX = 1.08
-    @all_products = Product.all
+    @all_products = Product.where(genre_id: params[:format])
+
+    #ジャンル検索
+    @genres = Genre.where(invalid_status: true)
+    @genre = Genre.find(params[:format]).name + "一覧"
+
+    #退会ユーザーをアクセスさせない
     @number = 0
     @loop = 0
 
@@ -68,8 +79,7 @@ class ProductsController < ApplicationController
     per = 8
     #ジャンル抽出
     genres = Genre.where(invalid_status: true)
-    @products = @products.where(out_of_stock: false, genre_id: genres.pluck(:id)).page(params[:page]).per(per)
-    
+    @products = @all_products.where(out_of_stock: false, genre_id: genres.pluck(:id)).page(params[:page]).per(per)
     render :index
    end
 end

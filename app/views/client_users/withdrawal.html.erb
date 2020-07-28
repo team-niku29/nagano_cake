@@ -6,7 +6,9 @@
 	   退会する場合は、「退会する」をクリックしてください。
 	</p>
 
+	<br><br>
 	<%= link_to "退会しない",client_user_path(@client_user), class: "btn btn-primary" %>
+	<br><br><br>
 
 	<%= form_for client_user_withdrawal_path, method: :patch do |f| %>
 		<%= f.submit "退会する", class: "btn btn-danger" %>
