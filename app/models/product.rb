@@ -17,8 +17,7 @@ class Product < ApplicationRecord
 		else
 			@products = Product.all
 		end
-	end
-  
+  end
 
   # def self.search(search)
   #   return Genre.all unless search
