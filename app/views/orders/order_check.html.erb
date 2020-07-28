@@ -1,17 +1,15 @@
 
-<div class ="container">
-
-	<h1>注文情報確認</h1>
+	<h1 class="page-header text-center">注文情報確認</h1>
 
 	<%= form_with(model:[@client_user,@order], local: true) do |f| %>
-		<div class="col-xs-6">
+		<div class="col-xs-8">
 			<table class="table table-hover table-inverse">
 				<thead>
 					<tr>
 						<th>商品名</th>
 						<th>単価(税込)</th>
 						<th>数量</th>
-						<th>小計</th>
+						<th>小計(税込)</th>
 					</tr>
 				</thead>
 
@@ -29,42 +27,41 @@
 			</table>
 		</div>
 
-		<div class="col-xs-2">
+		<div class="col-xs-4">
 			<table class="table table-hover table-inverse">
 				<thead>
 					<tr>
-						<th>送料</th>
+						<th>送料(税込)</th>
 						<td>¥800</td>
 						<%= f.hidden_field :charriage , :value => "800" %>
 					</tr>
 					<tr>
-						<th>商品合計</th>
+						<th>商品合計(税込)</th>
 						<td>¥<%= @total %></td>
 					</tr>
 					<tr>
-						<th>請求金額</th>
-						<td>¥<%= @total + 800 %></td>
+						<th>請求金額(税込)</th>
+						<th>¥<%= @total + 800 %></th>
 						<%= f.hidden_field :billing_amount , :value => @total + 800 %>
 					</tr>
 				</thead>
 			</table>
 		</div>
 
-		<div class="col-xs-9">
-			<h2>お支払い方法</h2>
-			<%= @payment %>
-			<%= f.hidden_field :payment_flg , :value => @payment_flg %>
-			<h2>お届け先</h2>
-			<%= @postal_code %>
-			<%= f.hidden_field :postal_code , :value => @postal_code %>
-			<%= @shipping_address %>
-			<%= f.hidden_field :shipping_address , :value => @shipping_address %><br>
-			<%= @full_name %><br>
-			<%= f.hidden_field :shipping_name , :value => @full_name %>
-		</div>
+	<div class ="text-center">
+			<div class="col-xs-12">
+				<h2>お支払い方法</h2>
+				<h3><%= @payment %></h3><br>
+				<%= f.hidden_field :payment_flg , :value => @payment_flg %>
+				<h2>お届け先</h2>
+				<h3><%= @postal_code %></h3>
+				<%= f.hidden_field :postal_code , :value => @postal_code %>
+				<h3><%= @shipping_address %></h3>
+				<%= f.hidden_field :shipping_address , :value => @shipping_address %>
+				<h3><%= @full_name %></h3>
+				<%= f.hidden_field :shipping_name , :value => @full_name %>
 
-		<div class="col-xs-9">
-			<br><%= f.submit "注文内容確定" %>
-		</div>
-	<% end %>
-</div>
+				<br><%= f.submit "注文内容確定", class: "btn btn-primary" %>
+			</div>
+		<% end %>
+	</div>

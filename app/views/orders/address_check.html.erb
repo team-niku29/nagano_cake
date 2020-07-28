@@ -1,7 +1,5 @@
 
-<div class ="container">
-	
-	<h2>注文情報</h2>
+	<h2 class="page-header">注文情報</h2>
 
 	<%= form_for(@order, url: { controller: 'orders', action: 'order_check'}, html:{method:'get'} ) do |f| %>
 		<div>
@@ -14,16 +12,16 @@
 			<h3>お届け先</h3>
 			<%= radio_button_tag :address_selection, 0 %>ご自身の住所<br>
 			<%= @client_user.postal_code %>
-			<%= @client_user.address %>
+			<%= @client_user.address %><br>
 			<%= @client_user.family_name %>
 			<%= @client_user.first_name %><br>
 
-			<%= radio_button_tag :address_selection, 1 %>登録済住所から選択<br>
+			<br><%= radio_button_tag :address_selection, 1 %>登録済住所から選択<br>
 			<%= collection_select(:address, :address_id, @addresses, :id, :full_address, {:include_blank => true }) %><br>
 
-			<%= radio_button_tag :address_selection, 2 %>新しいお届け先<br>
+			<br><%= radio_button_tag :address_selection, 2 %>新しいお届け先<br>
 
-			<table>
+			<table class="ordercheck">
 				<tr>
 					<td>郵便番号(ハイフンなし)</td>
 					<td><%= f.text_field :postal_code %></td>
@@ -36,10 +34,8 @@
 					<td>宛名</td>
 					<td><%= f.text_field :shipping_name %></td>
 				</tr>
-				<tr>
-					<td><%= f.submit "注文確認" %></td>
-				</tr>
 			</table>
+
+			<br><%= f.submit "注文確認", class: "btn btn-primary" %>
 		</div>
 	<% end %>
-</div>

@@ -77,49 +77,82 @@ class OrdersController < ApplicationController
     @payment_flg = params[:order][:payment_flg]
     if @payment_flg == "0"
       @payment = "クレジットカード"
+      #お届け先条件分岐
+      @address_selection = params[:address_selection]
+      @address_id = params[:address][:address_id]
+      if @address_selection == "0"
+        @postal_code = @client_user.postal_code
+        @shipping_address = @client_user.address
+        @full_name = @client_user.family_name + @client_user.first_name
+      elsif @address_selection == "1"
+        #新しい住所の空白チェック
+        if @address_id == ""
+          redirect_to request.referer, notice: "登録済住所を選択してください"
+        else
+          @address = Address.find(params[:address][:address_id])
+          @postal_code = @address.postal_code
+          @shipping_address = @address.address
+          @full_name = @address.name
+        end
+      elsif @address_selection == "2"
+        @address = Address.new
+        @postal_code = params[:order][:postal_code]
+        @shipping_address = params[:order][:shipping_address]
+        @full_name = params[:order][:shipping_name]
+
+        #addressテーブルに追加
+        @address.client_user_id = @client_user.id
+        @address.postal_code = @postal_code
+        @address.address = @shipping_address
+        @address.name = @full_name
+        #新しいaddressレコード作成時のバリテーションチェック
+        if @address.save
+        else
+          redirect_to request.referer, notice: "新しいお届け先を「空白なく」入力してください"
+        end
+      else
+        redirect_to request.referer, notice: "お届け先を指定して下さい"
+      end
     elsif @payment_flg == "1"
       @payment = "銀行振込"
+      #お届け先条件分岐
+      @address_selection = params[:address_selection]
+      @address_id = params[:address][:address_id]
+      if @address_selection == "0"
+        @postal_code = @client_user.postal_code
+        @shipping_address = @client_user.address
+        @full_name = @client_user.family_name + @client_user.first_name
+      elsif @address_selection == "1"
+        #新しい住所の空白チェック
+        if @address_id == ""
+          redirect_to request.referer, notice: "登録済住所を選択してください"
+        else
+          @address = Address.find(params[:address][:address_id])
+          @postal_code = @address.postal_code
+          @shipping_address = @address.address
+          @full_name = @address.name
+        end
+      elsif @address_selection == "2"
+        @address = Address.new
+        @postal_code = params[:order][:postal_code]
+        @shipping_address = params[:order][:shipping_address]
+        @full_name = params[:order][:shipping_name]
+
+        #addressテーブルに追加
+        @address.client_user_id = @client_user.id
+        @address.postal_code = @postal_code
+        @address.address = @shipping_address
+        @address.name = @full_name
+        #新しいaddressレコード作成時のバリテーションチェック
+        if @address.save
+        else
+          redirect_to request.referer, notice: "新しいお届け先を「空白なく」入力してください"
+        end
+      else
+        redirect_to request.referer, notice: "お届け先を指定して下さい"
+      end
     else
       redirect_to request.referer, notice: "支払い方法を選択してください"
-    end
-
-    #お届け先条件分岐
-    @address_selection = params[:address_selection]
-    @address_id = params[:address][:address_id]
-    if @address_selection == "0"
-      @postal_code = @client_user.postal_code
-      @shipping_address = @client_user.address
-      @full_name = @client_user.family_name + @client_user.first_name
-    elsif @address_selection == "1"
-      #新しい住所の空白チェック
-      if @address_id == ""
-        redirect_to request.referer, notice: "登録済住所を選択してください"
-      else
-        @address = Address.find(params[:address][:address_id])
-        @postal_code = @address.postal_code
-        @shipping_address = @address.address
-        @full_name = @address.name
-      end
-    elsif @address_selection == "2"
-      @address = Address.new
-      @postal_code = params[:order][:postal_code]
-      @shipping_address = params[:order][:shipping_address]
-      @full_name = params[:order][:shipping_name]
-      #addressテーブルに追加
-      @address.client_user_id = @client_user.id
-      @address.postal_code = @postal_code
-      @address.address = @shipping_address
-      @address.name = @full_name
-      #新しいaddressレコード作成時のバリテーションチェック
-      if @address.save
-      else
-        @order = Order.new
-        @client_user = current_client_user
-        @addresses = @client_user.addresses
-        render "address_check"
-      end
-    else
-      redirect_to request.referer, notice: "お届け先を指定して下さい"
     end
   end
 
