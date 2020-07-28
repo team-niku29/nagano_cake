@@ -2,7 +2,16 @@
 	<div class="col-xs-3">
        <%= render 'products/genre', genres: @genres %>
     </div>
-<p class="lead">商品一覧　全<%= @number %>件</p>
+
+
+<p class="lead">商品一覧 　全<%= @number %>件</p>
+
+    <table>
+        <tr>
+            <td><%= paginate @products %></td>
+        </tr>
+    </table>
+
     <div class="col-xs-4">
         <table>
             <tr>
@@ -45,6 +54,7 @@
         </table>
         <table>
             <tr>
+                <td><%= paginate @products %></td>
             </tr>
         </table>
     </div>
