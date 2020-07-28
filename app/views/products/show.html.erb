@@ -10,7 +10,7 @@
 					<tr>
 						<td>
 							<%= link_to (@product) do %>
-								<%= attachment_image_tag(@product, :image_id, :fill, 100, 100, fallback: "no_image.jpg") %><br>
+								<%= attachment_image_tag(@product, :image, :fill, 100, 100, fallback: "no_image.jpg") %><br>
 							<% end %>
 						</td>
 						<td>
@@ -33,7 +33,7 @@
 			<tr>
 				<td>
 					<%= link_to (@product) do %>
-						<%= attachment_image_tag(@product, :image_id, :fill, 100, 100, fallback: "no_image.jpg") %><br>
+						<%= attachment_image_tag(@product, :image, :fill, 100, 100, fallback: "no_image.jpg") %><br>
 					<% end %>
 				</td>
 				<td>
