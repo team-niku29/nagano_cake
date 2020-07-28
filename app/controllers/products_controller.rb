@@ -1,9 +1,15 @@
 class ProductsController < ApplicationController
 
   def index
+    #ジャンル検索
+    @genres = Genre.where(invalid_status: false)
+    #管理者をアクセスさせない
+    if admin_signed_in?
+        redirect_to destroy_admin_session_path
+    end
     #退会ユーザーをアクセスさせない
+    
     if client_user_signed_in?
-
       if current_client_user.delete_status == true
         redirect_to destroy_client_user_session_path
       end
@@ -22,10 +28,10 @@ class ProductsController < ApplicationController
       else
       end
     end
-    # @genres = Genre.all.search(params[:name])
   end
-
+  
   def show
+    @genres = Genre.where(invalid_status: false)
     @TAX = 1.08
     @product = Product.find(params[:id])
     @price = (@product.price_excluding * @TAX).ceil
@@ -35,4 +41,20 @@ class ProductsController < ApplicationController
   	else
     end
   end
+
+  def search
+  #   @genres = Genre.where(invalid_status: false)
+  #   @products = Product.where(genre_id: params[:format])
+  #   @all_products = Product.all
+  #   @number = 0
+  #   @all_products.each do |product|
+  #     if product.out_of_stock == false
+  #       @number = @number + 1
+  #     else
+  #     end
+  #   end
+  #   @TAX = 1.08
+  #   @loop = 0
+  #   render :index
+   end
 end
