@@ -23,7 +23,6 @@
   margin-block-end: 1em;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
-
 }
 
 /*ページネーション自体のデザイン*/
@@ -88,8 +87,6 @@
 .headerWrapper {
   margin-top: 20px;
 }
-
- }
 
  /*ページネーション自体のデザイン*/
 
@@ -203,4 +200,8 @@
 /* Buttons' focus effect */
 .login input[type="submit"]:focus {
   border-color: #05a;
+}
+
+.logo {
+  background-image: url(/assets/nagano_cake_logo.png);
 }
