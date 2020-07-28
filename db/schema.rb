@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_20_065013) do
+ActiveRecord::Schema.define(version: 2020_07_28_151527) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "client_user_id", default: 0, null: false
@@ -104,6 +104,7 @@ ActiveRecord::Schema.define(version: 2020_07_20_065013) do
     t.boolean "out_of_stock", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image"
     t.index ["name"], name: "index_products_on_name"
   end
 

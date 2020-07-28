@@ -10,6 +10,8 @@ class Admin::ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
+    @name = params[:product][:newproduct][:filename]
+    binding.pry
     if @product.save
       redirect_to admin_products_path
     else
