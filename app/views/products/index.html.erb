@@ -16,7 +16,11 @@
                         <% if @loop == 2 %>
                                 <td>
                                     <%= link_to(product) do %>
+<<<<<<< HEAD
                                         <%= attachment_image_tag product, :image, fallback: "no_image.jpg",size: "300x300" %><br>
+=======
+                                        <%= attachment_image_tag product.image_id, :image, fallback: "no_image.jpg",size: "300x300" %><br>
+>>>>>>> 4aa912546f59ded765c1f5b81d083759bb55fad0
                                     <% end %>
                                     <%= link_to product.name, product_path(product.id) %><br>
                                     ¥<%= (product.price_excluding * @TAX).ceil %>円
@@ -27,7 +31,11 @@
                         <% else %>
                             <td>
                                 <%= link_to(product) do %>
+<<<<<<< HEAD
                                     <%= attachment_image_tag product, :image, fallback: "no_image.jpg",size: "300x300" %><br>
+=======
+                                    <%= attachment_image_tag product.image_id, :image, fallback: "no_image.jpg",size: "300x300" %><br>
+>>>>>>> 4aa912546f59ded765c1f5b81d083759bb55fad0
                                 <% end %>
                                 <%= link_to product.name, product_path(product.id) %><br>
                                 ¥<%= (product.price_excluding * @TAX).ceil %>円
