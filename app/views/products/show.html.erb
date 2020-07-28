@@ -33,4 +33,13 @@
 		<% else %>
 		<% end %>
 
+			<% if client_user_signed_in? %>
+					<%= form_with(model:[@client_user,@cart]) do |f| %>
+						<%= f.select :quantity, [1,2,3,4,5,6,7,8,9,10], class: "col-xs-9 book_body" %>
+						<%= f.hidden_field :product_id_delivary , :value => @product.id %>
+					<%= f.submit "カートに入れる" %>
+				<% end %>
+			<% else %>
+			<% end %>
+		</div>
 	</div>

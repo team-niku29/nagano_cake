@@ -1,4 +1,7 @@
 class AddressesController < ApplicationController
+
+  before_action :authenticate_client_user!
+
   def index
     @address = Address.new
     @client_user = current_client_user
@@ -11,22 +14,29 @@ class AddressesController < ApplicationController
     if @address.save #入力されたデータをdbに保存する。
       redirect_to request.referer, notice: "successfully created address!"#保存された場合の移動先を指定。
     else
-      redirect_to request.referer
+
+    @client_user = current_client_user
+    @addresses = @client_user.addresses.reverse_order
+     render :index
     end
   end
 
   def edit
-    @client_user = current_client_user
-    @address = Address.find(params[:id])
-    #binding.pry
+    if @client_user = current_client_user
+      @address = Address.find(params[:id])
+    else
+      redirect_to action: :index
+    end
   end
 
   def update
     @address = Address.find(params[:id])
     if @address.update(address_params)
+      
       redirect_to client_user_addresses_path(current_client_user)
     else
-      render 'edit'
+      @client_user = current_client_user
+      render :index
     end
   end
 

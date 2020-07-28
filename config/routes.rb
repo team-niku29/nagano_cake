@@ -83,5 +83,5 @@ Rails.application.routes.draw do
   get '/home/about' => 'home#about'
   root 'products#index'
   resources :products, only: [:show]
-
+  get 'search' => 'products#search'
 end

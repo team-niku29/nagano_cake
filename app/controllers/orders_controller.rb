@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-
+  before_action :authenticate_client_user!
   def index
     @client_user = current_client_user
     @orders = @client_user.orders
@@ -38,6 +38,7 @@ class OrdersController < ApplicationController
   end
 
   def show
+    @client_user = current_client_user
     @order = Order.find(params[:id])
     @subtotal = @order.total_quantity * @order.total_quantity
     @order_items = @order.order_items

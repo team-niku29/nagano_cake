@@ -1,2 +1,11 @@
-<div class= "col-mo-8">
   <h2>ジャンル検索</h2>
+  <table class= "table table-hover">
+
+    <% @genres.each do |genre| %>
+      <tr><hr><%= link_to genre.name , search_path(genre), method: :get %></tr>
+
+    <% end %>
+    
+    <hr>
+
+  </table>
