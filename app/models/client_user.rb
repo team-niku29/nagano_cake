@@ -17,4 +17,15 @@ class ClientUser < ApplicationRecord
     with: /\A[\p{katakana} ー－&&[^ -~｡-ﾟ]]+\z/,
     message: "全角カタカナのみで入力して下さい"
 }
+
+def self.search(search,word)
+  if search == "forward_match"
+    @users = ClientUser.where("family_name LIKE?","#{word}%")
+  elsif search == "backward_match"
+    @users = ClientUser.where("first_name LIKE?","%#{word}")
+  else
+    @users = ClientUser.all
+  end
+end
+
 end
