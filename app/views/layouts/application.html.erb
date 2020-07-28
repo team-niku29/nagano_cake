@@ -13,7 +13,16 @@
       <nav class="nav navbar-nav navbar-left">
         <img src="/assets/nagano_cake_logo.png" alt="" >
       </nav>
-      <ul class="nav navbar-nav navbar-right">
+      
+      <ul class="nav navbar-nav navbar-text">
+        <% if client_user_signed_in? %>
+        <li>ようこそ、<%= current_client_user.family_name + current_client_user.first_name%> さん</li>
+        <% else %>
+         <li>ようこそ、ゲスト さん</p>
+        <% end %>
+      </ul>
+      
+      <ul class="nav navbar-nav navbar-right navbar-inverse"style="background-color: #192437;">
         <% if client_user_signed_in? %>
           <li><%= link_to("マイページ", client_user_path(current_client_user.id), {class: "glyphicon glyphicon-home"}) %></li>
           <li><%= link_to("商品一覧", root_path, {class: "glyphicon glyphicon-user"}) %></li>
@@ -29,11 +38,10 @@
     </div>
   </nav>
   </head>
-
   <body>
     <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-
-    <%= yield %>
+    <div class= 'container'>
+      <%= yield %>
+    </div>
   </body>
 </html>

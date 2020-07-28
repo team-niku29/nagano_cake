@@ -1,4 +1,6 @@
 class ClientUsersController < ApplicationController
+  before_action :authenticate_client_user!
+
   def show
     @client_users = ClientUser.find(params[:id])
     if @client_users.id != current_client_user.id
