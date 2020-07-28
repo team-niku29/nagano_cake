@@ -66,9 +66,10 @@ class ProductsController < ApplicationController
       end
 
     per = 8
+    #ジャンル抽出
     genres = Genre.where(invalid_status: true)
     @products = @products.where(out_of_stock: false, genre_id: genres.pluck(:id)).page(params[:page]).per(per)
-
+    
     render :index
    end
 end
