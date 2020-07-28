@@ -4,6 +4,12 @@ class Product < ApplicationRecord
   has_many :carts, dependent: :destroy
   attachment :image, destroy: false
 
+<<<<<<< HEAD
+  def self.search(search)
+  return Genre.all unless search
+  Genre.where([' content LIKE ?'], "%#{search}%")
+  end
+=======
   validates :name, presence: true, presence: { message: "商品名が空白です"}
   validates :name, uniqueness: true
   validates :introduction,presence: true, presence: { message: "商品説明が空白です"}
@@ -23,4 +29,5 @@ class Product < ApplicationRecord
   #   return Genre.all unless search
   #   Genre.where([' content LIKE ?'], "%#{search}%")
   # end
+>>>>>>> 4aa912546f59ded765c1f5b81d083759bb55fad0
 end

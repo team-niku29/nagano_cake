@@ -4,7 +4,7 @@ class Address < ApplicationRecord
     self.postal_code + self.address + self.name
   end
   validates :address, presence: true
-  validates :postal_code, presence: true
+  validates :postal_code, presence: true,numericality: true
   validates :name, presence: true
 
 end
