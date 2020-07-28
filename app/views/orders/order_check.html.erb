@@ -19,12 +19,10 @@
 					<% @carts.each do |cart| %>
 						<tr>
 							<td><%= cart.product.name %></td>
-							<td><%= @price = (cart.product.price_excluding * @TAX).ceil %></td>
+							<td>¥<%= @price = (cart.product.price_excluding * @TAX).ceil %></td>
 							<td><%= cart.quantity %></td>
-							<td><%= @price * cart.quantity %></td>
+							<td>¥<%= @price * cart.quantity %></td>
 						</tr>
-						<% @total %>
-						<% @total_quantity %>
 					<% end %>
 					<%= f.hidden_field :total_quantity , :value => @total_quantity %>
 				</tbody>
@@ -36,16 +34,16 @@
 				<thead>
 					<tr>
 						<th>送料</th>
-						<td>800</td>
+						<td>¥800</td>
 						<%= f.hidden_field :charriage , :value => "800" %>
 					</tr>
 					<tr>
 						<th>商品合計</th>
-						<td><%= @total %></td>
+						<td>¥<%= @total %></td>
 					</tr>
 					<tr>
 						<th>請求金額</th>
-						<td><%= @total + 800 %></td>
+						<td>¥<%= @total + 800 %></td>
 						<%= f.hidden_field :billing_amount , :value => @total + 800 %>
 					</tr>
 				</thead>
@@ -60,13 +58,13 @@
 			<%= @postal_code %>
 			<%= f.hidden_field :postal_code , :value => @postal_code %>
 			<%= @shipping_address %>
-			<%= f.hidden_field :shipping_address , :value => @shipping_address %>
+			<%= f.hidden_field :shipping_address , :value => @shipping_address %><br>
 			<%= @full_name %><br>
 			<%= f.hidden_field :shipping_name , :value => @full_name %>
 		</div>
 
 		<div class="col-xs-9">
-			<%= f.submit %>
+			<br><%= f.submit "注文内容確定" %>
 		</div>
 	<% end %>
 </div>

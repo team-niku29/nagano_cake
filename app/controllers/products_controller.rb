@@ -17,16 +17,21 @@ class ProductsController < ApplicationController
 
     #商品一覧表示しない
     @TAX = 1.08
-    @products = Product.page(params[:page]).reverse_order
     @all_products = Product.all
     @number = 0
     @loop = 0
 
     @all_products.each do |product|
       if product.out_of_stock == false
-        @number = @number + 1
+        if product.genre.invalid_status == true
+          @number = @number + 1
+        else
+        end
       else
       end
+    per = 8
+    genres = Genre.where(invalid_status: true)
+    @products = Product.where(out_of_stock: false, genre_id: genres.pluck(:id)).page(params[:page]).per(per)
     end
   end
   
