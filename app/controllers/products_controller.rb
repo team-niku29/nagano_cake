@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
 
   def index
     #ジャンル検索
-    @genres = Genre.where(invalid_status: false)
+    @genres = Genre.where(invalid_status: true)
     #管理者をアクセスさせない
     if admin_signed_in?
         redirect_to destroy_admin_session_path
