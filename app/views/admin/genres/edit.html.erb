@@ -1,5 +1,5 @@
-<h1>ジャンル編集画面</h1>
-
+<h2 class="page-header text-center">ジャンル編集画面</h2>
+<div class="text-center">
 	<%= form_for @genre, url: admin_genre_path(@genre.id) do |f| %>
   		<%= f.label :name, "ジャンル" %>
  		<%= f.text_field :name %>
@@ -9,4 +9,4 @@
 		<%= f.label :invalid_status, '無効', value: false %>
  		<%= f.submit "変更を保存する", class: "btn btn-primary" %>
  	<% end %>
-
+</div>

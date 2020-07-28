@@ -1,33 +1,81 @@
-<h1>商品詳細</h1>
+<h2 class="page-header text-center">商品詳細</h2>
 	<div class="row">
-		<div class="col-xs-3">
+		<div class="col-xs-4">
 			<%= attachment_image_tag @product, :image, fallback: "no_image.jpg",size: "300x300" %>
 		</div>
 
-		<div class="col-xs-6 col-xs-offset-1">
-			<dl class="dl-horizontal">
-				<dt>商品名</dt>
-				<dd><%= @product.name %></dd>
+		<div class="col-xs-6">
+			<div calss="row">
+				<div class="col-xs-12">
+					<div class="col-xs-4">
+						<strong>商品名</strong>
+					</div>
+					<div class="col-xs-4">
+						<%= @product.name %>
+					</div>
+				</div>
+			</div>
 
-				<dt>商品説明</dt>
-				<dd><%= @product.introduction %></dd>
+			<div calss="row">
+				<div class="col-xs-12">
+					<div class="col-xs-4">
+						<strong>商品説明</strong>
+					</div>
+					<div class="col-xs-4 text-nowrap">
+						<%= @product.introduction %>
+					</div>
+				</div>
+			</div>
 
-				<dt>ジャンル</dt>
-				<dd><%= @genre %></dd>
+			<div calss="row">
+				<div class="col-xs-12">
+					<div class="col-xs-4">
+						<strong>ジャンル</strong>
+					</div>
+					<div class="col-xs-4 text-nowrap">
+						<%= @genre %>
+					</div>
+				</div>
+			</div>
 
-				<dt>税込価格（税抜き価格）</dt>
-				<dd><%= (@product.price_excluding * 1.08).ceil %>(<%= @product.price_excluding %>)</dd>
+			<div calss="row">
+				<div class="col-xs-12">
+					<div class="col-xs-4 text-nowrap">
+						<strong>税込価格（税抜き価格）</strong>
+					</div>
+					<div class="col-xs-4 text-nowrap">
+						<%= (@product.price_excluding * 1.08).ceil %>(<%= @product.price_excluding %>)
+					</div>
+				</div>
+			</div>
 
-				<dt>販売ステータス</dt>
-				<dd><% if @product.out_of_stock == false %>
-					<%= "販売中" %>
-				<% else %>
-					<%= "販売中止" %>
-				<% end %>
-				</dd>
-			</dl>
-		</div>
-		<div class="col-xs-3 col-xs-offset-5">
-			<%= link_to "編集する", edit_admin_product_path, class: "btn btn-primary" %>
+			<div calss="row">
+				<div class="col-xs-12">
+					<div class="col-xs-4 text-nowrap">
+						<strong>販売ステータス</strong>
+					</div>
+					<div class="col-xs-4 text-nowrap">
+						<% if @product.out_of_stock == false %>
+							<%= "販売中" %>
+						<% else %>
+							<%= "販売中止" %>
+						<% end %>
+					</div>
+				</div>
+			</div>
+
+			<div calss="row">
+				<div class="col-xs-12">
+					<div class="col-xs-4">
+						<%= link_to "編集する", edit_admin_product_path, class: "btn btn-primary" %>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
+
+
+
+
+
+
