@@ -2,8 +2,8 @@
 
 <div class="row text-center">
 
-    <h4 class="col-xs-4 text-right">顧客ID</h4>
-    <h4 class="col-xs-8"><%= @user.id %>
+    <h4 class="col-xs-6 text-right">顧客ID</h4>
+    <h4 class="col-xs-6 text-left"><%= @user.id %>
         <% if @user.delete_status == false %>
         　<span class="label label-primary">
             有効会員
@@ -14,28 +14,27 @@
         </span>
         <% end %>
 
-        <h4 class="col-xs-4 text-right">氏名</h4>
-        <h4 class="col-xs-8"><%= @user.family_name %>　<%= @user.first_name %></h4>
+        <h4 class="col-xs-6 text-right">氏名</h4>
+        <h4 class="col-xs-6 text-left"><%= @user.family_name %>　<%= @user.first_name %></h4>
 
-        <h4 class="col-xs-4 text-right">フリガナ</h4>
-        <h4 class="col-xs-8"><%= @user.kana_family_name %>　<%= @user.kana_first_name %></h4>
+        <h4 class="col-xs-6 text-right">フリガナ</h4>
+        <h4 class="col-xs-6 text-left"><%= @user.kana_family_name %>　<%= @user.kana_first_name %></h4>
 
-        <h4 class="col-xs-4 text-right">郵便番号</h4>
-        <h4 class="col-xs-8"><%= @user.postal_code %></h4>
+        <h4 class="col-xs-6 text-right">郵便番号</h4>
+        <h4 class="col-xs-6 text-left"><%= @user.postal_code %></h4>
 
-        <h4 class="col-xs-4 text-right">住所</h4>
-        <h4 class="col-xs-8"><%= @user.address %></h4>
+        <h4 class="col-xs-6 text-right">住所</h4>
+        <h4 class="col-xs-6 text-left"><%= @user.address %></h4>
 
-        <h4 class="col-xs-4 text-right">電話番号</h4>
-        <h4 class="col-xs-8"><%= @user.tel %></h4>
+        <h4 class="col-xs-6 text-right">電話番号</h4>
+        <h4 class="col-xs-6 text-left"><%= @user.tel %></h4>
 
-        <h4 class="col-xs-4 text-right">メールアドレス</h4>
-        <h4 class="col-xs-8"><%= @user.email %></h4>
-        <br>
+        <h4 class="col-xs-6 text-right">メールアドレス</h4>
+        <h4 class="col-xs-6 text-left"><%= @user.email %></h4>
 
-        <div class="col text-center">
-            <br>
-            <%= link_to "編集する", edit_admin_client_user_path(@user.id), class:"btn btn-primary" %>　
-            <%= link_to "注文履歴一覧", admin_client_user_orders_path(@user.id, order_sort: 1), class:"btn btn-primary" %>
-        </div>
+</div>
+<br><br><br>
+<div class="col text-center">
+    　<%= link_to "編集する", edit_admin_client_user_path(@user.id), class:"btn btn-primary" %>　　
+    <%= link_to "注文履歴一覧", admin_client_user_orders_path(@user.id, order_sort: 1), class:"btn btn-primary" %>
 </div>
