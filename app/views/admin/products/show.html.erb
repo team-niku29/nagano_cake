@@ -44,7 +44,7 @@
 					<h3>税込価格<br>（税抜き価格）</h3>
 				</div>
 				<div class="col-xs-4 text-nowrap">
-					<h3><%= (@product.price_excluding * 1.08).ceil %>(<%= @product.price_excluding %>)</h3>
+					<h3>¥ <%= (@product.price_excluding * 1.08).ceil %>(<%= @product.price_excluding %>)</h3>
 				</div>
 			</div>
 		</div>
@@ -64,7 +64,7 @@
 			</div>
 		</div>
 
-			<%= link_to "戻る",  admin_products_index_path, class: "btn btn-danger btn-lg pull-left" %>
+			<%= link_to "戻る",  admin_products_index_path, class: "btn btn-primary btn-lg pull-left" %>
 			<%= link_to "編集する", edit_admin_product_path, class: "btn btn-success btn-lg pull-right" %>
 	</div>
 </div>
