@@ -2,18 +2,39 @@
 
 <div class="row text-center">
     <div class="col-xs-6">
-            <%= simple_form_for(@product, url:admin_products_path, method: :post, local: true) do |f| %>
+        <div class="form-group">
+            <br><br><br><br>
+            <%= form_for @product,url:admin_products_path do |f| %>
             <%= render 'layouts/error_messages', model: f.object %>
-            <div id="img_field" onClick="$('#file').click()">
-                <% if @product.image.present? %>
-                <%= image_tag(@product.image.url) %>
-                <% else %>
-                <i class="fas fa-images">画像を登録してください</i>
-                <% end %>
-            </div>
-            <%= f.input :image, as: :file, label: false, input_html: { multiple: true, class: "d-none", id: "file" } %>
+            <script>
+                $(function () {
+                    $('#myfile').change(function (e) {
+                        //ファイルオブジェクトを取得する
+                        var file = e.target.files[0];
+                        var reader = new FileReader();
+
+                        //画像でない場合は処理終了
+                        if (file.type.indexOf("image") < 0) {
+                            alert("画像ファイルを指定してください。");
+                            return false;
+                        }
+
+                        //アップロードした画像を設定する
+                        reader.onload = (function (file) {
+                            return function (e) {
+                                $("#img1").attr("src", e.target.result);
+                                $("#img1").attr("title", file.name);
+                            };
+                        })(file);
+                        reader.readAsDataURL(file);
+                    });
+                });
+            </script>
+            <%= attachment_image_tag(@product, :image, size: "400x400", fallback: "no_image.jpg",id:"img1")  %>
+            <%= f.attachment_field :image, class: "user_image center-block", id:"myfile" %>
+        </div>
     </div>
-    
+
     <div class="col-xs-6 ">
         <div class="form-group">
             <%= f.label :name, '商品名'%>

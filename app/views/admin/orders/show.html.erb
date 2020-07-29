@@ -1,21 +1,22 @@
 <h2 class="page-header text-center">注文履歴詳細画面</h2>
 
 <div class="row text-center">
-    <h4 class="col-xs-4 text-right">購入者</h4>
-    <h4 class="col-xs-8"><%= link_to @order.client_user.family_name+@order.client_user.first_name, admin_client_user_path(@order.client_user_id)%>
+    <h4 class="col-xs-6 text-right">購入者</h4>
+    <h4 class="col-xs-6 text-left">
+        <%= link_to @order.client_user.family_name+@order.client_user.first_name, admin_client_user_path(@order.client_user_id)%>
     </h4>
-    <h4 class="col-xs-4 text-right">配送先</h4>
-    <h4 class="col-xs-8"><%= @order.shipping_address %></h4>
-    <h4 class="col-xs-4 text-right">支払い方法</h4>
-    <h4 class="col-xs-8"><%= @order.payment_flg %></h4>
-    <h4 class="col-xs-4 text-right">注文ステータス</h4>
-    <h4 class="col-xs-8">
+    <h4 class="col-xs-6 text-right">配送先</h4>
+    <h4 class="col-xs-6 text-left"><%= @order.shipping_address %></h4>
+    <h4 class="col-xs-6 text-right">支払い方法</h4>
+    <h4 class="col-xs-6 text-left"><%= @order.payment_flg %></h4>
+    <h4 class="col-xs-6 text-right">注文ステータス</h4>
+    <h4 class="col-xs-6 text-left">
         <%= @order.status_flg %></h4>
-    <div class="col-xs-4 text-right"></div>
-    <div class="col-xs-8">
+    <div class="col-xs-6 text-right"></div>
+    <div class="col-xs-6 text-left">
         <%= form_for @order, url:admin_client_user_order_path(@order.id) do |f| %>
         <%= f.select :status_flg, Order.status_flgs.keys.to_a %>
-        <%= f.submit "更新", class:"btn btn-primary btn-xs" %>
+        <%= f.submit "更新", class:"btn btn-success btn-xs" %>
         <% end %>
     </div>
 </div>
@@ -24,45 +25,47 @@
 
 <div class="row">
 
-    <div class="col-xs-8">
-        <table class="table table-striped table-inverse">
-            <thead>
-                <tr>
-                    <th class="col-xs-3">商品名</th>
-                    <th class="col-xs-2">単価（税込）</th>
-                    <th class="col-xs-1">数量</th>
-                    <th class="col-xs-1">小計</th>
-                    <th class="col-xs-2">製作ステータス</th>
-                    <th class="col-xs-3"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <% @items.each do |item| %>
-                <tr>
-                    <td><%= item.name %></td>
-                    <td>¥ <%= (item.price*@TAX).ceil %></td>
-                    <td><%= item.quantity %></td>
-                    <td>¥ <%= (item.price*item.quantity*@TAX).ceil %></td>
+    <div class="container text-center">
+        <div class="col-xs-8">
+            <table class="table table-striped table-inverse">
+                <thead>
+                    <tr>
+                        <th class="col-xs-3 text-center">商品名</th>
+                        <th class="col-xs-1 text-center">単価</th>
+                        <th class="col-xs-1 text-center">数量</th>
+                        <th class="col-xs-2 text-center">小計</th>
+                        <th class="col-xs-2 text-center">製作ステータス</th>
+                        <th class="col-xs-3 text-center"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @items.each do |item| %>
+                    <tr>
+                        <td><%= item.name %></td>
+                        <td>¥ <%= (item.price*@TAX).ceil %></td>
+                        <td><%= item.quantity %></td>
+                        <td>¥ <%= (item.price*item.quantity*@TAX).ceil %></td>
                         <%= form_for [@order,item], url:admin_client_user_order_order_item_path(@order.client_user_id,@order.id,item.id) do |f| %>
                         <td><%= item.production_status %></td>
                         <td>
-                        <%= f.select :production_status, OrderItem.production_statuses.keys.to_a %>
-                        <%= f.submit "更新", class:"btn btn-primary btn-xs" %>
-                        <% end %>
-                    </td>
-                </tr>
-                <% end %>
-            </tbody>
-        </table>
-    </div>
+                            <%= f.select :production_status, OrderItem.production_statuses.keys.to_a %>
+                            <%= f.submit "更新", class:"btn btn-success btn-xs" %>
+                            <% end %>
+                        </td>
+                    </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
 
-    <div class="col-xs-4">
-    <br><br>
-        <h5 class="col-xs-4">商品合計</h5>
-        <h4 class="col-xs-8">¥ <%= @total_price.ceil %></h4>
-        <h5 class="col-xs-4">送料</h5>
-        <h4 class="col-xs-8">¥ <%= @order.charriage %></h4>
-        <h5 class="col-xs-4">請求金額合計</h5>
-        <h4 class="col-xs-8">¥ <%= @order.billing_amount %></h4>
+        <div class="col-xs-4">
+            <br><br>
+            <h4 class="col-xs-6 text-right">商品合計</h4>
+            <h4 class="col-xs-6 text-left">¥ <%= @total_price.ceil %></h4>
+            <h4 class="col-xs-6 text-right">送料</h4>
+            <h4 class="col-xs-6 text-left">¥ <%= @order.charriage %></h4>
+            <h4 class="col-xs-6 text-right">請求金額合計</h4>
+            <h4 class="col-xs-6 text-left">¥ <%= @order.billing_amount %></h4>
+        </div>
     </div>
 </div>
