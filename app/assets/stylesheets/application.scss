@@ -23,7 +23,6 @@
   margin-block-end: 1em;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
-
 }
 
 /*ページネーション自体のデザイン*/
@@ -80,8 +79,7 @@
 .navbar-right {
   margin-left: -20px;
 }
-
-.navbar-nav {
+.navbar-text {
   margin-right: -20px;
 }
 
@@ -89,34 +87,28 @@
   margin-top: 20px;
 }
 
- }
+/*ページネーション自体のデザイン*/
 
- /*ページネーション自体のデザイン*/
+.pagination > li > a {
+  position: center;
+  border: none; /*枠線をなくす*/
+  color: #696969; /*文字の色を変える*/
+}
 
+/* 表示しているページ番号のデザイン */
+.pagination > .active > a {
+  background: #93c9ff; /*背景の色を変える*/
+  border-radius: 15px; /*角を丸くする*/
+}
 
+/*ホバー時のデザイン*/
+.pagination > li > a:hover {
+  border-radius: 15px; /*角を丸くする*/
+}
 
-.pagination>li>a {        
-    position: center;  
-    border: none;     /*枠線をなくす*/
-    color: #696969;   /*文字の色を変える*/
-  }
-  
-  /* 表示しているページ番号のデザイン */
-  .pagination>.active>a {     
-    background: #93c9ff;     /*背景の色を変える*/
-    border-radius: 15px;     /*角を丸くする*/
-  }
-  
-  /*ホバー時のデザイン*/
-  .pagination>li>a:hover {        
-    border-radius: 15px;    /*角を丸くする*/
-  }
+/*ヘッダーの設定*/
 
-  /*ヘッダーの設定*/
-
-
-
-  .login {
+.login {
   width: 400px;
   margin: 16px auto;
   font-size: 16px;
@@ -203,4 +195,14 @@
 /* Buttons' focus effect */
 .login input[type="submit"]:focus {
   border-color: #05a;
+}
+
+.div-col-3 {
+  margin-left: 20px;
+}
+
+.container-fluid {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 1200px; //例えば
 }
