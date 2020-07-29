@@ -67,26 +67,6 @@
   text-align: center;
 }
 
-/* aboutページ */
-.aboutWrapper {
-  margin-bottom: 420px;
-}
-.aboutWrapper img {
-  float: left;
-  margin-right: 20px;
-}
-
-.navbar-right {
-  margin-left: -20px;
-}
-.navbar-text {
-  margin-right: -20px;
-}
-
-.headerWrapper {
-  margin-top: 20px;
-}
-
  /*ページネーション自体のデザイン*/
 .pagination>li>a {
     position: center;
@@ -131,9 +111,14 @@
 .container-fluid {
   margin-right: auto;
   margin-left: auto;
-  max-width: 1200px; //例えば
+  max-width: 1500px; //例えば
 }
 
 .logo {
   background-image: url(/assets/nagano_cake_logo.png);
+}
+
+/*footerの設定*/
+footer{
+  margin: 50px;
 }

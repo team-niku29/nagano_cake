@@ -1,3 +1,27 @@
 // Place all the styles related to the homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* aboutページ */
+.aboutWrapper {
+  margin-bottom: 420px;
+}
+.aboutWrapper img {
+	width: 50% ;
+	max-width: 300px;
+	max-height: 200px;
+	margin: auto ;
+	float: center;
+}
+
+.navbar-right {
+  margin-left: -20px;
+}
+.navbar-text {
+  margin-right: -20px;
+}
+
+.headerWrapper {
+  margin-top: 20px;
+}
+

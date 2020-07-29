@@ -72,7 +72,8 @@
 			<div calss="row">
 				<div class="col-xs-12">
 					<br>
-					<%= f.submit "変更する", class: "btn btn-primary" %>
+					<%= f.submit "変更する", {class: "btn btn-success"} %>
+					<br><br><%= link_to "戻る", :back, class: "btn btn-primary" %>
 					<br>退会したい人は・・・・・<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>
 					<%=link_to("退会する", client_user_withdrawal_path(current_client_user.id), class: "btn-sm btn-danger") %>
 				</div>
