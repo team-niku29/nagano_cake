@@ -2,18 +2,18 @@
 
 <div class="row text-center">
     <div class="col-xs-6">
-            <%= simple_form_for(@product, url:admin_products_path, method: :post, local: true) do |f| %>
-            <%= render 'layouts/error_messages', model: f.object %>
-            <div id="img_field" onClick="$('#file').click()">
-                <% if @product.image.present? %>
-                <%= image_tag(@product.image.url) %>
-                <% else %>
-                <i class="fas fa-images">画像を登録してください</i>
-                <% end %>
-            </div>
-            <%= f.input :image, as: :file, label: false, input_html: { multiple: true, class: "d-none", id: "file" } %>
+        <%= simple_form_for(@product, url:admin_products_path, method: :post, local: true) do |f| %>
+        <%= render 'layouts/error_messages', model: f.object %>
+        <div id="img_field" onClick="$('#file').click()">
+            <% if @product.image.present? %>
+            <%= image_tag(@product.image.url) %>
+            <% else %>
+            <i class="fas fa-images">商品画像登録</i>
+            <% end %>
+        </div>
+        <%= f.input :image, as: :file, label: false, input_html: { multiple: true, class: "d-none", id: "file" } %>
     </div>
-    
+
     <div class="col-xs-6 ">
         <div class="form-group">
             <%= f.label :name, '商品名'%>
