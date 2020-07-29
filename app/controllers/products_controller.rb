@@ -19,7 +19,7 @@ class ProductsController < ApplicationController
         redirect_to destroy_client_user_session_path
       end
     end
-
+    
     #商品一覧表示しないものチェック
     @number = 0
     @loop = 0
