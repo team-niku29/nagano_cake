@@ -1,26 +1,27 @@
 <div class="text-center">
-      <h2>管理者ログイン</h2>
+  <div class="center-block" style="width: 300px;height: 300px; text-align: center; background-color: #EEFFFF; border: 1px solid gray;">
+    <h2>管理者ログイン</h2>
 
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="field">
-          <%= f.label :email %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          <h4><%= f.label :email %><br /></h4>
+          <h4><%= f.email_field :email, autofocus: true, autocomplete: "email" %></h4>
         </div>
 
         <div class="field">
-          <%= f.label :password %><br />
-          <%= f.password_field :password, autocomplete: "current-password" %>
+          <h4><%= f.label :password %><br /></h4>
+          <h4><%= f.password_field :password, autocomplete: "current-password" %></h4>
         </div>
 
         <% if devise_mapping.rememberable? %>
           <div class="field">
-            <%= f.check_box :remember_me %>
-            <%= f.label :remember_me %>
+            <h4><%= f.check_box :remember_me %><%= f.label :remember_me %></h4>
           </div>
         <% end %>
 
         <div class="actions">
-          <%= f.submit "Log in" %>
+          <h4><%= f.submit "Log in" %></h4>
         </div>
       <% end %>
-    </div>
+  </div>
+</div>
