@@ -1,11 +1,11 @@
 class Admin::ClientUsersController < ApplicationController
-
   before_action :authenticate_admin!
 
   layout 'admin'
-  
+
   def index
-    @client_users = ClientUser.page(params[:page]).reverse_order
+    per = 10
+    @client_users = ClientUser.page(params[:page]).per(per)
   end
 
   def show
