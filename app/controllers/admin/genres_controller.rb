@@ -5,8 +5,9 @@ class Admin::GenresController < ApplicationController
   layout 'admin'
 
   def index
+    per = 10
   	@genre = Genre.new
-  	@genres = Genre.all
+  	@genres = Genre.page(params[:page]).per(per)
   end
 
   def create
