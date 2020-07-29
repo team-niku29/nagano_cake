@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NaganoCake</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <nav class="navbar navbar-default" style="background-color: #192437;">
+      <div class= "container">
+        <div class= "row">
+          <div class= "col-xs-5">
+            <nav class="nav navbar-nav navbar-left">
+              <img src="/assets/nagano_cake_logo.png" alt="" >
+            </nav>
+          </div>
+          <div class= headerWrapper>
+            <div class= "col-xs-3">
+              <ul class="nav navbar-nav navbar-text">
+                <% if client_user_signed_in? %>
+                  <li>ようこそ！<%= current_client_user.family_name + current_client_user.first_name%> さん</li>
+                <% else %>
+                  <li>ようこそ！ ゲスト さん</li>
+                <% end %>
+              </ul>
+            </div>
+            <div class= "col-xs-4">
+              <ul class="nav navbar-nav navbar-right navbar-inverse"style="background-color: #192437;">
+                <% if client_user_signed_in? %>
+                  <li><%= link_to("マイページ", client_user_path(current_client_user.id), {class: "glyphicon glyphicon-user"}) %></li>
+                  <li><%= link_to("商品一覧", root_path, {class: "glyphicon glyphicon-gift"}) %></li>	
+                  <li><%= link_to("カート", client_user_carts_path(current_client_user.id), {class: "glyphicon glyphicon-shopping-cart"}) %></li>
+                  <li><%= link_to("ログアウト", destroy_client_user_session_path, { method: :get ,class: "glyphicon glyphicon-log-out"}) %></li>
+                <% else %>
+                  <li> <%= link_to("About", homes_about_path, {class: "glyphicon glyphicon-home"}) %></li>
+                  <li> <%= link_to("商品一覧", root_path, {class: "glyphicon glyphicon-user"}) %></li>
+                  <li> <%= link_to("新規登録", new_client_user_registration_path, {class: "glyphicon glyphicon-edit"}) %></li>
+                  <li> <%= link_to("ログイン", new_client_user_session_path, {class: "glyphicon glyphicon-log-in"}) %> </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </head>
+  <body>
+    <div class="thanks">
+      <p class="notice"><%= notice %></p>
+      <div class= 'container'>
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>

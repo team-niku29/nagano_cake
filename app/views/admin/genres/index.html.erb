@@ -1,0 +1,46 @@
+<h2 class="page-header text-center">ジャンル一覧・追加</h2>
+	<div class="row">
+		<%= form_for @genre, url: admin_genres_path do |f| %>
+			<ul class="list-inline">
+				<li>
+					<h4>ジャンル</h4>
+				</li>
+				<li><%= f.text_field :name, class: "form-control",placeholder: "ジャンルを入力" %></li>
+				<li>
+					<%= f.radio_button :invalid_status, true ,checked: true%>
+					<%= f.label :invalid_status, "有効", value: true %>
+					<%= f.radio_button :invalid_status, false %>
+					<%= f.label :invalid_status, '無効', value: false %>
+				</li>
+				<li><%= f.submit '追加', class: "btn btn-primary"  %></li>
+			</ul>
+		<% end %>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th class="col-lg-4">ジャンル</th>
+					<th class="col-lg-4">状態</th>
+					<th class="col-lg-4"></th>
+				</tr>
+			</thead>
+
+			<% @genres.each do |genre| %>
+				<tbody>
+					<tr>
+						<td><%= genre.name %></td>
+						<td><% if genre.invalid_status == false %>
+								<%= "無効" %>
+							<% else %>
+								<%= "有効" %>
+							<% end %>
+						</td>
+						<td>
+							<%= link_to "編集する", edit_admin_genre_path(genre.id), class: "btn btn-primary" %>
+						</td>
+					</tr>
+				</tbody>
+			<% end %>
+		</table>
+	</div>
+</div>

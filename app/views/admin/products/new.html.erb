@@ -1,0 +1,65 @@
+<h2 class="page-header text-center">新規商品登録画面</h2>
+
+<div class="row text-center">
+    <div class="col-xs-6">
+        <div class="form-group">
+            <br><br><br><br>
+            <%= form_for @product,url:admin_products_path do |f| %>
+            <%= render 'layouts/error_messages', model: f.object %>
+            <script>
+                $(function () {
+                    $('#myfile').change(function (e) {
+                        //ファイルオブジェクトを取得する
+                        var file = e.target.files[0];
+                        var reader = new FileReader();
+
+                        //画像でない場合は処理終了
+                        if (file.type.indexOf("image") < 0) {
+                            alert("画像ファイルを指定してください。");
+                            return false;
+                        }
+
+                        //アップロードした画像を設定する
+                        reader.onload = (function (file) {
+                            return function (e) {
+                                $("#img1").attr("src", e.target.result);
+                                $("#img1").attr("title", file.name);
+                            };
+                        })(file);
+                        reader.readAsDataURL(file);
+                    });
+                });
+            </script>
+            <%= attachment_image_tag(@product, :image, size: "400x400", fallback: "no_image.jpg",id:"img1")  %>
+            <%= f.attachment_field :image, class: "user_image center-block", id:"myfile" %>
+        </div>
+    </div>
+
+    <div class="col-xs-6 ">
+        <div class="form-group">
+            <%= f.label :name, '商品名'%>
+            <%= f.text_field :name, class:"form-control" %>
+        </div>
+        <div class="form-group">
+            <%= f.label :introduction, '商品説明' %>
+            <%= f.text_area :introduction, class:"form-control input-lg" %>
+        </div>
+        <div class="form-group">
+            <%= f.label :genre_id, 'ジャンル' %><br>
+            <%= f.collection_select :genre_id, Genre.all, :id, :name, class:"form-control" %>
+        </div>
+        <div class="form-group">
+            <%= f.label :price_excluding%>
+            <%= f.text_field :price_excluding, class:"form-control" %>
+        </div>
+        <div class="form-group">
+            <%= f.label :out_of_stock, '販売ステータス'%><br>
+            <%= f.select :out_of_stock, [["販売中", 0], ["販売中止中", 1]], class:"form-control" %>
+        </div>
+    </div>
+
+    <div class="col text-center">
+        <%= f.submit "新規登録", class:"btn btn-primary"%>
+    </div>
+    <% end %>
+</div>
