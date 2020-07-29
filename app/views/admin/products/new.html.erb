@@ -8,10 +8,10 @@
                 <% if @product.image.present? %>
                 <%= image_tag(@product.image.url) %>
                 <% else %>
-                <i class="fas fa-images"></i>
+                <i class="fas fa-images">画像を登録してください</i>
                 <% end %>
             </div>
-            <%= f.input :newproduct, as: :file, label: false, input_html: { multiple: true, class: "d-none", id: "file" } %>
+            <%= f.input :image, as: :file, label: false, input_html: { multiple: true, class: "d-none", id: "file" } %>
     </div>
 
     <div class="col-xs-6 ">

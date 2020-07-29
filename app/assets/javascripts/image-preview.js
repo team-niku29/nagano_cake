@@ -12,7 +12,7 @@ $(function(){
           $preview.append($('<img>').attr({
             src: e.target.result,
             width: "100%",
-            class: "preview",
+            class: "product",
             title: file.name
           }));
         };
