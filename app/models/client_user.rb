@@ -13,7 +13,6 @@ class ClientUser < ApplicationRecord
   validates :address, presence: true
   validates :tel, presence: true
   validates :email, presence: true
-  validates :delete_status, presence: true
   validates :kana_first_name, presence: true,
                  format: {
                    with: /\A[\p{katakana} ー－&&[^ -~｡-ﾟ]]+\z/,
