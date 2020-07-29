@@ -14,23 +14,22 @@
         <div class="form-group">
           <%= form_with model: [@client_user, @address] do |f| %>
         </div>
-            <div class="form-group">
-              <%= f.label :"郵便番号(ハイフンなし)" %>
-              <%= f.text_field :postal_code , class: 'form-control', placeholder: "例:1066223" %>
-            </div>
-            <div class="form-group">
-              <%= f.label :"住所" %>
-              <%= f.text_field :address, class: 'form-control', placeholder: "例:東京都港区六本木３丁目２−１ 住友不動産六本木グランドタワー 23F"%>
-            </div>
-            <div class="form-group", >
-              <%= f.label :"届け先名" %>
-              <%= f.text_field :name, class: 'form-control', placeholder:"例:インフラトップ チーム肉"%>
-            </div>
-              <%= f.submit :"新しい住所を登録する",  class:"btn btn-primary" %><br><br><br>
+        <div class="form-group">
+          <%= f.label :"郵便番号(ハイフンなし)" %>
+          <%= f.text_field :postal_code , class: 'form-control', placeholder: "例:1066223" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :"住所" %>
+          <%= f.text_field :address, class: 'form-control', placeholder: "例:東京都港区六本木３丁目２−１ 住友不動産六本木グランドタワー 23F"%>
+        </div>
+        <div class="form-group", >
+          <%= f.label :"届け先名" %>
+          <%= f.text_field :name, class: 'form-control', placeholder:"例:インフラトップ チーム肉"%>
+        </div>
+          <%= f.submit :"新しい住所を登録する",  class:"btn btn-primary" %><br><br><br>
           <%end %>
     </div>
   </div>
-
 
   <div class="col-xs-12">
     <table class="table table-striped table-inverse">

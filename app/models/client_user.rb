@@ -4,12 +4,13 @@ class ClientUser < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :addresses, dependent: :destroy
+  
   has_many :orders, dependent: :destroy
   has_many :carts, dependent: :destroy
 
   validates :first_name, presence: true
   validates :family_name, presence: true
-  validates :postal_code, presence: true
+  validates :postal_code, numericality: true, presence: true
   validates :address, presence: true
   validates :tel, presence: true
   validates :email, presence: true

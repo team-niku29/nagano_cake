@@ -7,11 +7,11 @@
   margin-bottom: 420px;
 }
 .aboutWrapper img {
-	width: 50% ;
-	max-width: 300px;
-	max-height: 200px;
-	margin: auto ;
-	float: center;
+  width: 100%;
+  max-width: auto;
+  max-height: auto;
+  margin: auto;
+  float: center;
 }
 
 .navbar-right {
@@ -24,4 +24,3 @@
 .headerWrapper {
   margin-top: 20px;
 }
-
