@@ -76,3 +76,7 @@ gem 'kaminari','~>1.2.1'
 
 #pry-byebug
 gem 'pry-byebug'
+
+gem 'carrierwave', '~> 1.0'
+
+gem 'simple_form'
