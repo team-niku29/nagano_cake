@@ -10,46 +10,48 @@
   <% end %>
 
 <div class="col-xs-9">
-  <h3>配送先登録/一覧</h3>
-  <%= form_with model: [@client_user, @address] do |f| %>
-    <table>
-        <tr>
-          <td><%= f.label :"郵便番号(ハイフンなし)" %></td>
-          <td><%= f.text_field :postal_code %></td>
-        </tr>
-        <tr>
-          <td><%= f.label :"住所" %></td>
-          <td><%= f.text_field :address %></td>
-        </tr>
-        <tr>
-          <td><%= f.label :"届け先名" %></td>
-          <td><%= f.text_field :name %></td>
-        </tr>
-    </table>
-  <%= f.submit :"新しい住所を登録する"%>
-  <%end %>
-
-  <table class="table">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">郵便番号</th>
-        <th scope="col">住所</th>
-        <th scope="col">宛名</th>
-        <th scope="col"></th>
-      </tr> 
-    <head>
-    <body>
-    <% @addresses.each do |address| %>
-      <tr>
-        <td> <%= address.postal_code %></td>
-        <td> <%= address.address %></td>
-        <td> <%= address.name %></td>
-        <td>
-          <%= link_to("編集",edit_client_user_address_path(current_client_user, address), {class: "btn btn-success"}) %>
-          <%= link_to("削除", client_user_address_path(current_client_user, address), method: :delete, class: "btn btn-danger pull-right") %>
-        </td>
-      </tr>
-    <% end %>
-    </body>
-  </table>
+      <h3>配送先登録/一覧</h3>
+      <%= form_with model: [@client_user, @address] do |f| %>
+            <div class="form-group">
+              <%= f.label :"郵便番号(ハイフンなし)" %>
+              <%= f.text_field :postal_code , class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :"住所" %>
+              <%= f.text_field :address, class: 'form-control'%>
+            </div>
+            <div class="form-group">
+              <%= f.label :"届け先名" %>
+              <%= f.text_field :name, class: 'form-control' %>
+            </div>
+        <%= f.submit :"新しい住所を登録する",  class:"btn btn-primary" %>
+      <%end %>
+  </div>
+  <div class= 'row'>
+    <div class="col-xs-9">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">郵便番号</th>
+            <th scope="col">住所</th>
+            <th scope="col">宛名</th>
+            <th scope="col"></th>
+          </tr> 
+        <head>
+        <body>
+        <% @addresses.each do |address| %>
+          <tr>
+            <td> <%= address.postal_code %></td>
+            <td> <%= address.address %></td>
+            <td> <%= address.name %></td>
+            <td>
+              <%= link_to("編集",edit_client_user_address_path(current_client_user, address), {class: "btn btn-success"}) %>
+              <%= link_to("削除", client_user_address_path(current_client_user, address), method: :delete, class: "btn btn-danger pull-right") %>
+            </td>
+          </tr>
+        <% end %>
+        </body>
+      </table>
+    </div>
+  </div>
 </div>

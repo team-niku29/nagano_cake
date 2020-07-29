@@ -7,9 +7,54 @@ table.ordercheck tr{
 	border:5px solid #FFFFFF;
 }
 
+
 .thanks{
 	color: red;
-  	background-image: url(images.jpeg);
+	background-size: cover;
+  	background-image: url(image.jpg);
 }
 
+.text-center_thanks{
+	height: 300px;
+	margin :200px;
+	text-align:center;
+}
 
+.thanks_bn1{
+  	animation: fadeIn 5s ease 0.1s 1 normal;
+}
+
+.thanks_bn2{
+	animation: fadeIn 15s ease 0.3s 1 normal;
+}
+
+@keyframes fadeIn {
+  0% {opacity: 0} /*アニメーション開始時は不透明度0%*/
+  100% {opacity: 1} /*アニメーション終了時は不透明度100%*/
+}
+
+.thanks-bn {
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+  padding: 0.25em 0;
+  text-decoration: none;
+  color: yellow;
+}
+
+.thanks-bn:before {
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 4px;
+  top:100%;
+  left: 0;
+  border-radius: 5px;
+  transition: .2s;
+}
+
+.thanks-bn:hover:before {
+  background:#FF5F17;
+  top: -webkit-calc(100% - 15px);
+  top: calc(100% - 7px);
+}
