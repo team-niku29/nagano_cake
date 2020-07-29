@@ -1,59 +1,60 @@
-<% if @address.errors.any? %>
-    <h2> <%= pluralize(@address.errors.count, "error") %> prohibited this obj from being saved: </h2>
-    <% @address.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %> 
-  <% end %>
-
-<% @address.errors.full_messages.each do |message| %>
-    <%= message %>
-  <% end %>
-
-<div class="col-xs-9">
-      <h3>配送先登録/一覧</h3>
-      <div class="form-group"%>
+<div class= "row center">
+  <% if @address.errors.any? %>
+      <h2> <%= pluralize(@address.errors.count, "error") %> prohibited this obj from being saved: </h2>
+      <% @address.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %> 
+    <% end %>
+  <% @address.errors.full_messages.each do |message| %>
+      <%= message %>
+    <% end %>
+  <div class="col-xs-12">
+    <h2 class="page-header text-center">配送先登録/一覧</h2>
+      <div class="form-group">
         <%= form_with model: [@client_user, @address] do |f| %>
-       </div> 
-            <div class="form-group">
-              <%= f.label :"郵便番号(ハイフンなし)" %>
-              <%= f.text_field :postal_code , class: 'form-control', placeholder: "例:1066223" %>
-            </div>
-            <div class="form-group">
-              <%= f.label :"住所" %>
-              <%= f.text_field :address, class: 'form-control', placeholder: "例:東京都港区六本木３丁目２−１ 住友不動産六本木グランドタワー 23F"%>
-            </div>
-            <div class="form-group", >
-              <%= f.label :"届け先名" %>
-              <%= f.text_field :name, class: 'form-control', placeholder:"例:インフラトップ チーム肉"%>
-            </div>
+      </div> 
+      <div class="form-group">
+        <%= f.label :"郵便番号(ハイフンなし)" %>
+        <%= f.text_field :postal_code , class: 'form-control', placeholder: "例:1066223" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :"住所" %>
+        <%= f.text_field :address, class: 'form-control', placeholder: "例:東京都港区六本木３丁目２−１ 住友不動産六本木グランドタワー 23F"%>
+      </div>
+      <div class="form-group", >
+        <%= f.label :"届け先名" %>
+        <%= f.text_field :name, class: 'form-control', placeholder:"例:インフラトップ チーム肉"%>
+      </div>
         <%= f.submit :"新しい住所を登録する",  class:"btn btn-primary" %>
       <%end %>
-  </div>
-  <div class= 'row'>
-    <div class="col-xs-9">
-      <table class="table">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">郵便番号</th>
-            <th scope="col">住所</th>
-            <th scope="col">宛名</th>
-            <th scope="col"></th>
-          </tr> 
-        <head>
-        <body>
-        <% @addresses.each do |address| %>
-          <tr>
-            <td> <%= address.postal_code %></td>
-            <td> <%= address.address %></td>
-            <td> <%= address.name %></td>
-            <td>
-              <%= link_to("編集",edit_client_user_address_path(current_client_user, address), {class: "btn btn-success"}) %>
-              <%= link_to("削除", client_user_address_path(current_client_user, address), method: :delete, class: "btn btn-danger pull-right") %>
-            </td>
-          </tr>
-        <% end %>
-        </body>
-      </table>
+    </div>
+</div>
+  
+    <div class= 'row'>
+      <div class="col-xs-12">
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">郵便番号</th>
+              <th scope="col">住所</th>
+              <th scope="col">宛名</th>
+              <th scope="col"></th>
+            </tr> 
+          <head>
+          <body>
+          <% @addresses.each do |address| %>
+            <tr>
+              <td> <%= address.postal_code %></td>
+              <td> <%= address.address %></td>
+              <td> <%= address.name %></td>
+              <td>
+                <%= link_to("編集",edit_client_user_address_path(current_client_user, address), {class: "btn btn-success"}) %>
+                <%= link_to("削除", client_user_address_path(current_client_user, address), method: :delete, class: "btn btn-danger pull-right") %>
+              </td>
+            </tr>
+          <% end %>
+          </body>
+        </table>
+      </div>
     </div>
   </div>
-</div>
