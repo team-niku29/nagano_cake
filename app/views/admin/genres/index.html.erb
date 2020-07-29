@@ -1,7 +1,7 @@
 <h2 class="page-header text-center">ジャンル一覧・追加</h2>
 	<div class="row">
 		<%= form_for @genre, url: admin_genres_path do |f| %>
-			<ul class="list-inline">
+			<ul class="list-inline text-center">
 				<li>
 					<h4>ジャンル</h4>
 				</li>
@@ -19,15 +19,15 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th class="col-lg-4">ジャンル</th>
-					<th class="col-lg-4">状態</th>
-					<th class="col-lg-4"></th>
+					<th class="col-lg-4 col text-center">ジャンル</th>
+					<th class="col-lg-4 col text-center">状態</th>
+					<th class="col-lg-4 col text-center"></th>
 				</tr>
 			</thead>
 
 			<% @genres.each do |genre| %>
 				<tbody>
-					<tr>
+					<tr class="text-center">
 						<td><%= genre.name %></td>
 						<td><% if genre.invalid_status == false %>
 								<%= "無効" %>
@@ -36,7 +36,7 @@
 							<% end %>
 						</td>
 						<td>
-							<%= link_to "編集する", edit_admin_genre_path(genre.id), class: "btn btn-primary" %>
+							<%= link_to "編集する", edit_admin_genre_path(genre.id), class: "btn btn-success" %>
 						</td>
 					</tr>
 				</tbody>
