@@ -1,0 +1,53 @@
+
+<div class = "row text-center">
+  <h2 class="page-header text-center">マイページ</h2>
+    <%=link_to("配送先一覧を見る", client_user_addresses_path(current_client_user.id), class: "btn btn-primary") %>
+    <%=link_to("注文履歴一覧を見る", client_user_orders_path(current_client_user.id), class: "btn btn-primary") %><br><br>
+    <div class="col-xs-12">
+      <table class="table">
+          <tr>
+            <th class="text-right">氏名：</th>
+            <td class = "text-left">
+              <%= @client_users.family_name %>
+              <%= @client_users.first_name %>
+            </td>
+          </tr>
+          <tr>
+            <th class="text-right">カナ：</th>
+            <td class = "text-left">
+            <%= @client_users.kana_family_name %>
+            <%= @client_users.kana_first_name %>
+            </td>
+          </tr>
+          <tr>
+            <th class="text-right">郵便番号：</th>
+            <td class = "text-left">
+              <%= @client_users.postal_code %>
+            </td class = "text-left">
+          </tr>
+          <tr>
+            <th class="text-right">住所：</th>
+            <td class = "text-left">
+              <%= @client_users.address %>
+            </td>
+          </tr>
+          <tr>
+            <th class="text-right">電話番号：</th>
+            <td class = "text-left">
+              <%= @client_users.tel %>
+            </td>
+          </tr>
+          <tr>
+            <th class="text-right">メールアドレス：</th>
+            <td class = "text-left">
+              <%= @client_users.email %>
+            </td>
+          </tr>
+      </table>
+    </div>
+
+    <div class="col-xs-12">
+      <%=link_to("登録情報編集する", edit_client_user_path, {class: "btn btn-success"}) %>
+      <%=link_to("パスワード変更する", edit_client_user_registration_path ,class: "btn btn-success") %>
+    </div>
+</div>

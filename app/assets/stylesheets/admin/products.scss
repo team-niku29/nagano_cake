@@ -1,0 +1,30 @@
+// Place all the styles related to the admin/products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#img_field {
+    padding: 5px 8px;
+    border: solid 1px;
+    text-align: center;
+    position: relative;
+    padding: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    overflow: hidden;
+    box-sizing: border-box;
+    transition: 0.3s ease-out;
+  
+    &:hover {
+      transition: 0.3s ease-out;
+      opacity: 0.9;
+    }
+    
+    i {
+      font-size: 30px;
+      line-height: 150px;
+      transition: 0.3s ease-out;
+    }
+  }

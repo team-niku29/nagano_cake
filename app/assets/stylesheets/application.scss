@@ -1,0 +1,124 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.field-form {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+/*ページネーション自体のデザイン*/
+
+.pagination {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pagination > li > a {
+  position: center;
+  border: none; /*枠線をなくす*/
+  color: #696969; /*文字の色を変える*/
+}
+
+/* 表示しているページ番号のデザイン */
+.pagination > .active > a {
+  background: #93c9ff; /*背景の色を変える*/
+  border-radius: 15px; /*角を丸くする*/
+}
+
+/*ホバー時のデザイン*/
+.pagination > li > a:hover {
+  border-radius: 15px; /*角を丸くする*/
+}
+
+/*ヘッダーの設定*/
+
+/*ログイン画面*/
+.field-form {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.item {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.order_show {
+  text-align: center;
+}
+
+ /*ページネーション自体のデザイン*/
+.pagination>li>a {
+    position: center;
+    border: none;     /*枠線をなくす*/
+    color: #696969;   /*文字の色を変える*/
+  }
+
+  /* 表示しているページ番号のデザイン */
+  .pagination>.active>a {
+    background: #93c9ff;     /*背景の色を変える*/
+    border-radius: 15px;     /*角を丸くする*/
+  }
+
+  /*ホバー時のデザイン*/
+  .pagination>li>a:hover {
+    border-radius: 15px;    /*角を丸くする*/
+  }
+
+/* 表示しているページ番号のデザイン */
+.pagination > .active > a {
+  background: #93c9ff; /*背景の色を変える*/
+  border-radius: 15px; /*角を丸くする*/
+}
+
+/*ホバー時のデザイン*/
+.pagination > li > a:hover {
+  border-radius: 15px; /*角を丸くする*/
+}
+
+/*ヘッダーの設定*/
+
+.login {
+  width: 400px;
+  margin: 16px auto;
+  font-size: 16px;
+}
+
+.div-col-3 {
+  margin-left: 20px;
+}
+
+.container-fluid {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 1500px; //例えば
+}
+
+.logo {
+  background-image: url(/assets/nagano_cake_logo.png);
+}
+
+/*footerの設定*/
+footer{
+  margin: 50px;
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>NaganoCake</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-default" style="background-color: #192437;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-4">
+                        <img src="/assets/nagano_cake_logo.png" alt="">
+                    </div>
+                    <div class="col-xs-8">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><%= link_to(" 商品一覧", admin_products_path, {class: "glyphicon glyphicon-cutlery"}) %>
+                            </li>
+                            <li><%= link_to(" 会員一覧", admin_client_users_path, {class: "glyphicon glyphicon-user"}) %>
+                            </li>
+                            <li><%= link_to(" 注文履歴一覧", admin_orders_index_path, {class: "glyphicon glyphicon-th-list"}) %>
+                            </li>
+                            <li><%= link_to(" ジャンル一覧", admin_genres_path, {class: "glyphicon glyphicon-align-justify"}) %>
+                            </li>
+                            <li>
+                                <%= link_to(" ログアウト", destroy_admin_session_path, { method: :get ,class: "glyphicon glyphicon-log-out"}) %>
+                            </li>
+                        </ul>
+                        <div class="text-right">
+                            <%= form_tag(admin_search_path, method: :get) do %>
+                            <%= text_field_tag (:word), "", class:"form-inline" %>
+                            <%= select_tag 'range' ,options_for_select([['ユーザーを検索', '1'], ['商品を検索', '2']]), class:"btn-default btn-sm" %>
+                            <%= select_tag 'search', options_for_select([["前方一致(ユーザーの場合は、苗字)","forward_match"], ["後方一致（ユーザー検索の場合は、名前）","backward_match"]]), class:"btn-default btn-sm" %>
+                            <%= submit_tag "検索", class:"btn-default btn-sm" %>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <p class="notice"><%= notice %></p>
+        <%= yield %>
+    </div>
+</body>
+
+</html>
