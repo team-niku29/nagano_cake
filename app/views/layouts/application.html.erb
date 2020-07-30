@@ -9,22 +9,22 @@
     <nav class="navbar navbar-default" style="background-color: #192437;">
       <div class= "container-fluid">
         <div class= "row">
-          <div class= "col-xs-5">
+          <div class= "col-md-5">
             <nav class="nav navbar-nav navbar-left">
               <img src="/assets/nagano_cake_logo.png" alt="" >
             </nav>
           </div>
           <div class= headerWrapper>
-            <div class= "col-xs-2">
+            <div class= "col-md-2">
               <ul class="nav navbar-nav navbar-text">
                 <% if client_user_signed_in? %>
-                  <li>ようこそ！<%= current_client_user.family_name + current_client_user.first_name%> さん</li>
+                  <li>ようこそ！<%= current_client_user.family_name + current_client_user.first_name %> さん</li>
                 <% else %>
                   <li>ようこそ！ ゲスト さん</li>
                 <% end %>
               </ul>
             </div>
-            <div class= "col-xs-5">
+            <div class= "col-md-5">
               <ul class="nav navbar-nav navbar-right navbar-inverse"style="background-color: #192437;">
                 <% if client_user_signed_in? %>
                   <li><%= link_to(" マイページ", client_user_path(current_client_user.id), {class: "glyphicon glyphicon-user"}) %></li>
